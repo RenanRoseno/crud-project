@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { EmployeeListComponent } from './employee/employee-list/employee-list.component';
 import { EstablishmentListComponent } from './establishment/establishment-list/establishment-list.component';
 import { EmployeeEstablListComponent } from './employee_establ/employee-establ-list/employee-establ-list.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { EmployeeEstablListComponent } from './employee_establ/employee-establ-l
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

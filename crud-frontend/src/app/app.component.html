@@ -1,4 +1,28 @@
-<h1 class="text-center">{{title}}</h1>
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+    <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">Projeto - CRUD</span>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a routerLink="funcionarios" routerLinkActive="active" class="nav-link"><fa-icon [icon]="faUser"></fa-icon> Funcionários</a>
+            </li>
+            <li class="nav-item d-flex mb-2">
+                <a routerLink="estabelecimentos" routerLinkActive="active" class="nav-link">
+                    <fa-icon [icon]="faStore"></fa-icon>  Estabelecimentos
+                </a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="funcionarios-establ" routerLinkActive="active" class="nav-link"><fa-icon [icon]="faExchange"></fa-icon> Relacionar</a>
+            </li>
+        </ul>
+    </div>
 
-<app-employee-list></app-employee-list>
-<app-establishment-list></app-establishment-list>
+</nav>
+<h1 class="text-center">{{title}}</h1>
+<div class="container">
+    <router-outlet></router-outlet>
+</div>
+<footer class="footer">
+    <div class="container">
+        <span> Todos os direitos reservados @RenanRoseno</span>
+    </div>
+</footer>
