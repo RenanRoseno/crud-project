@@ -7,6 +7,10 @@ import { EmployeeListComponent } from './employee/employee-list/employee-list.co
 import { EstablishmentListComponent } from './establishment/establishment-list/establishment-list.component';
 import { EmployeeEstablListComponent } from './employee_establ/employee-establ-list/employee-establ-list.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CreateEmployeeComponent } from './employee/create-employee/create-employee.component';
+import { CreateEstablishmentComponent } from './establishment/create-establishment/create-establishment.component';
+import { CreateEmployeeEstablComponent } from './employee_establ/create-employee-establ/create-employee-establ.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -14,9 +18,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AppComponent,
     EmployeeListComponent,
     EstablishmentListComponent,
-    EmployeeEstablListComponent
+    EmployeeEstablListComponent,
+    CreateEmployeeComponent,
+    CreateEstablishmentComponent,
+    CreateEmployeeEstablComponent
   ],
   imports: [
+    NgbModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
