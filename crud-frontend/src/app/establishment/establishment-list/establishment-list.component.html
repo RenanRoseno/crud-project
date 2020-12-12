@@ -1,0 +1,20 @@
+<h3>Listagem de Estabelecimentos</h3>
+<table class="table table=striped">
+    <thead>
+        <th>#</th>
+        <th>Nome</th>
+        <th>CEP</th>
+        <th colspan="2">Endereço</th>
+        <th>Telefone</th>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let establishment of establishments">
+            <td>{{establishment.id}}</td>
+            <td>{{establishment.name}}</td>
+            <td>{{establishment.cep}}</td>
+            <td>{{establishment.street}}</td>
+            <td>{{ establishment.complement}}</td>
+            <td>{{establishment.phone_number}}</td>
+        </tr>
+    </tbody>
+</table>
