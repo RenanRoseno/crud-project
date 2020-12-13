@@ -10,6 +10,8 @@ import { EmployeeService } from '../employee.service';
 })
 export class CreateEmployeeComponent implements OnInit {
   employee: Employee = new Employee();
+  phoneMask = ['(', /[0-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/,/\d/,/\d/, '-', /\d/, /\d/, /\d/, /\d/];
+  cepMask = [/[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/,/[0-9]/,/[0-9]/,];
   
   constructor(private employeeService : EmployeeService,
     private router : Router) { }

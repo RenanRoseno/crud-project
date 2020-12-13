@@ -10,10 +10,13 @@ import { EstablishmentService } from '../establishment.service';
 })
 export class CreateEstablishmentComponent implements OnInit {
   establishment : Establishment = new Establishment();
+  phoneMask = ['(', /[0-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/,/\d/,/\d/, '-', /\d/, /\d/, /\d/, /\d/];
+  cepMask = [/[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/,/[0-9]/,/[0-9]/,];
   constructor(private establishmentService: EstablishmentService,
     private router:Router) { }
 
   ngOnInit(): void {
+   
   }
 
   goToEstablishmentList(){

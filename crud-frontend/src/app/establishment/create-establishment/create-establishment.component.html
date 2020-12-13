@@ -1,18 +1,16 @@
 <div class="col-md-8 offset-md-2">
     <h3>Cadastrar Estabelecimento</h3>
-
-
     <form (ngSubmit) = "onSubmit()">
-
+        
         <div class="form-group required">
             <div class="row">
                 <div class="col">
                     <label for="name">Nome</label>
-                    <input type="text" id="name" name="name" class="form-control" [(ngModel)] = "establishment.name">
+                    <input type="text" id="name" name="name" class="form-control" [(ngModel)] = "establishment.name" >
                 </div>
                 <div class="col">
                     <label for="name">Telefone</label>
-                    <input type="text" id="phone_number" name ="phone_number" class="form-control" [(ngModel)] = "establishment.phone_number">
+                    <input type="text" id="phone_number" name ="phone_number" class="form-control" [(ngModel)] = "establishment.phone_number" [textMask]="{mask: phoneMask}">
                 </div>
             </div>
 
@@ -23,7 +21,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label>CEP</label>
-                        <input type="text" id="cep" class="form-control" name="cep" [(ngModel)] = "establishment.cep">
+                        <input type="text" id="cep" class="form-control" name="cep" [(ngModel)] = "establishment.cep" [textMask]="{mask: cepMask}">
                     </div>
                 </div>
                 <div class="col">

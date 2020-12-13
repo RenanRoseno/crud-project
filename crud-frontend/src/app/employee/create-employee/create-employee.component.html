@@ -16,7 +16,7 @@
                     <div class="form-group">
                         <label>CEP</label>
                         <input type="text" id="cep" class="form-control" name="cep" [(ngModel)]="employee.cep"
-                            [ngModelOptions]="{standalone: true}">
+                            [ngModelOptions]="{standalone: true}" [textMask]="{mask: cepMask}">
                     </div>
                 </div>
                 <div class="col">
@@ -36,12 +36,12 @@
                 <div class="col">
                     <label for="name">Telefone Celular</label>
                     <input type="text" id="phone_number" class="form-control" [(ngModel)]="employee.phone_number"
-                        [ngModelOptions]="{standalone: true}">
+                        [ngModelOptions]="{standalone: true}" [textMask]="{mask: phoneMask}">
                 </div>
                 <div class="col">
                     <label for="name">Telefone Residencial</label>
                     <input type="text" id="home_phone" class="form-control" [(ngModel)]="employee.home_phone"
-                        [ngModelOptions]="{standalone: true}" data-inputmask="'mask': '99-9999999'">
+                        [ngModelOptions]="{standalone: true}" [textMask]="{mask: phoneMask}">
                 </div>
                 <div class="col">
                     <label>Função</label>

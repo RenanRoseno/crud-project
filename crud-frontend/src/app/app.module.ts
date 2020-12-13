@@ -12,7 +12,7 @@ import { CreateEstablishmentComponent } from './establishment/create-establishme
 import { CreateEmployeeEstablComponent } from './employee_establ/create-employee-establ/create-employee-establ.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule} from '@angular/forms'
-
+import {TextMaskModule} from 'angular2-text-mask';  
 
 @NgModule({
   declarations: [
@@ -28,6 +28,7 @@ import {FormsModule} from '@angular/forms'
     NgbModule,
     FormsModule,
     BrowserModule,
+    TextMaskModule,
     AppRoutingModule,
     HttpClientModule,
     FontAwesomeModule
