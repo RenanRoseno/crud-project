@@ -35,10 +35,17 @@ public class EmployeeController {
 		return employeeRepository.save(employee);
 	}
 
+	@GetMapping("/funcionarios/{id}")
+	public ResponseEntity<Employee> getEmployeeById(@PathVariable Integer id) {
+		Employee employee = employeeRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Funcionário não existe com o id: " + id));
+		return ResponseEntity.ok(employee);
+	}
+
 	@PutMapping("/funcionarios/{id}")
 	public ResponseEntity<Employee> updateEmployee(@PathVariable Integer id, @RequestBody Employee employee) {
 		Employee e1 = employeeRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("FUncionário não existe com o id: " + id));
+				.orElseThrow(() -> new ResourceNotFoundException("Funcionário não existe com o id: " + id));
 
 		e1.setCep(employee.getCep());
 		e1.setComplement(employee.getComplement());
@@ -46,9 +53,9 @@ public class EmployeeController {
 		e1.setName(employee.getName());
 		e1.setPhone_number(employee.getPhone_number());
 		e1.setStreet(employee.getStreet());
-		
+
 		Employee updatedEmployee = employeeRepository.save(employee);
-		
+
 		return ResponseEntity.ok(updatedEmployee);
 	}
 }
