@@ -1,4 +1,4 @@
-<h3>Listagem de Funcionários! </h3>
+<h3>Listagem de Profissionais </h3>
 <script>
     let count = 0;
 </script>
@@ -27,7 +27,7 @@
             
             <td>{{employee.id_function}} </td>
             <td><button (click) = "updateEmployee(employee.id)" class="btn btn-success" title="Editar"><fa-icon [icon]="faEdit"></fa-icon></button></td>
-            <td><button class="btn btn-danger" title="Excluir"><fa-icon [icon]="faTrash"></fa-icon></button></td>
+            <td><button (click) = "deleteEmployee(employee.id)" class="btn btn-danger" title="Excluir"><fa-icon [icon]="faTrash"></fa-icon></button></td>
         </tr>
     </tbody>
 </table>
