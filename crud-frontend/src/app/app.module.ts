@@ -28,10 +28,10 @@ import {TextMaskModule} from 'angular2-text-mask';
     NgbModule,
     FormsModule,
     BrowserModule,
-    TextMaskModule,
     AppRoutingModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    TextMaskModule
   ],
   providers: [],
   bootstrap: [AppComponent]
