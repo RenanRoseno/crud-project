@@ -56,6 +56,7 @@ public class EmployeeController {
 		e1.setName(employee.getName());
 		e1.setPhone_number(employee.getPhone_number());
 		e1.setStreet(employee.getStreet());
+		e1.setNumber(employee.getNumber());
 
 		Employee updatedEmployee = employeeRepository.save(employee);
 

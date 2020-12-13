@@ -28,6 +28,9 @@ public class Establishment {
 
 	@Column(name = "phone_number")
 	private String phone_number;
+	
+	@Column(name = "number")
+	private String number;
 
 	public Establishment(String name, String street, String complement, String cep, String phone_number) {
 		super();
@@ -90,4 +93,13 @@ public class Establishment {
 		this.phone_number = phone_number;
 	}
 
+	public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
+	
+	
 }

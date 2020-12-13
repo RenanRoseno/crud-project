@@ -34,6 +34,9 @@ public class Employee {
 	@Column(name = "home_phone")
 	private String home_phone;
 
+	@Column(name = "number")
+	private String number;
+	
 	@Column(name = "id_function")
 	private int id_function;
 
@@ -116,4 +119,13 @@ public class Employee {
 		this.id_function = id_function;
 	}
 
+	public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
+	
+	
 }

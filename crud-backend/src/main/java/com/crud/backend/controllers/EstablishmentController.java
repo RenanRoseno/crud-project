@@ -52,6 +52,7 @@ public class EstablishmentController {
 		estab.setComplement(establishment.getComplement());
 		estab.setName(establishment.getName());
 		estab.setPhone_number(establishment.getPhone_number());
+		estab.setNumber(establishment.getNumber());
 		estab.setStreet(establishment.getStreet());
 
 		Establishment updatedEstablishment = establishmentRepository.save(establishment);
