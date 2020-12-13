@@ -9,7 +9,7 @@ import { faExchangeAlt, faStoreAlt, faPlus, faList} from '@fortawesome/free-soli
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'crud-frontend';
+  title = '';
   faUser = faUser;
   faExchange = faExchangeAlt;
   faStore = faStoreAlt;

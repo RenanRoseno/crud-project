@@ -1,5 +1,8 @@
 <h3>Listagem de Funcionários! </h3>
-<table class="table table=striped">
+<script>
+    let count = 0;
+</script>
+<table class="table table-striped">
     <thead>
         <th>#</th>
         <th>Nome</th>
@@ -9,8 +12,8 @@
         <th>Função</th>
     </thead>
     <tbody>
-        <tr *ngFor = "let employee of employees">
-            <td>{{employee.id}}</td>
+        <tr *ngFor = "let employee of employees; let i = index">
+            <td>{{i + 1}}</td>
             <td>{{employee.name}}</td>
             <td>{{employee.cep}}</td>
             <td>{{employee.street}}</td>

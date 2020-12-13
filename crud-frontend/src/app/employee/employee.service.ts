@@ -7,10 +7,15 @@ import { Employee } from './employee';
   providedIn: 'root'
 })
 export class EmployeeService {
-  private baseUrl = "http://localhost:8081/crud/funcionarios"
-  constructor(private httpClient : HttpClient) { }
+  private baseUrl = "http://localhost:8081/crud/funcionarios";
+  private baseUrlSave = "http://localhost:8081/crud/funcionarios/salvar";
+  constructor(private httpClient: HttpClient) { }
 
-  getEmployeesList(): Observable<Employee[]>{
+  getEmployeesList(): Observable<Employee[]> {
     return this.httpClient.get<Employee[]>(`${this.baseUrl}`);
+  }
+
+  createEmployee(employee: Employee): Observable<Object> {
+    return this.httpClient.post(`${this.baseUrlSave}`, employee);
   }
 }

@@ -11,6 +11,7 @@ import { CreateEmployeeComponent } from './employee/create-employee/create-emplo
 import { CreateEstablishmentComponent } from './establishment/create-establishment/create-establishment.component';
 import { CreateEmployeeEstablComponent } from './employee_establ/create-employee-establ/create-employee-establ.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {FormsModule} from '@angular/forms'
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
   ],
   imports: [
     NgbModule,
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
