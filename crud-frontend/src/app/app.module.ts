@@ -12,7 +12,9 @@ import { CreateEstablishmentComponent } from './establishment/create-establishme
 import { CreateEmployeeEstablComponent } from './employee_establ/create-employee-establ/create-employee-establ.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule} from '@angular/forms'
-import {TextMaskModule} from 'angular2-text-mask';  
+import {TextMaskModule} from 'angular2-text-mask';
+import { UpdateEmployeeComponent } from './employee/update-employee/update-employee.component';
+import { UpdateEstablishmentComponent } from './establishment/update-establishment/update-establishment.component';  
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import {TextMaskModule} from 'angular2-text-mask';
     EmployeeEstablListComponent,
     CreateEmployeeComponent,
     CreateEstablishmentComponent,
-    CreateEmployeeEstablComponent
+    CreateEmployeeEstablComponent,
+    UpdateEmployeeComponent,
+    UpdateEstablishmentComponent
   ],
   imports: [
     NgbModule,

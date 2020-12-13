@@ -7,19 +7,27 @@
         <th>#</th>
         <th>Nome</th>
         <th>CEP</th>
-        <th colspan="2">Endereço</th>
+        <th>Endereço</th>
         <th>Telefone</th>
+        <th>Telefone Residencial</th>
         <th>Função</th>
+        <th colspan="2" class="text-center">Ações</th>
     </thead>
     <tbody>
         <tr *ngFor = "let employee of employees; let i = index">
             <td>{{i + 1}}</td>
             <td>{{employee.name}}</td>
             <td>{{employee.cep}}</td>
-            <td>{{employee.street}}</td>
-            <td>{{ employee.complement}}</td>
-            <td>{{employee.phone_number}} | {{employee.home_phone}} </td>
+            <td>Rua {{employee.street}}, {{ employee.complement}}</td>
+            <td *ngIf = "employee.phone_number != null ">{{employee.phone_number}}</td> 
+            <td *ngIf = "employee.phone_number == null "> - </td> 
+            
+            <td *ngIf = "employee.home_phone != null">{{employee.home_phone}} </td>
+            <td *ngIf = "employee.home_phone == null"> - </td>
+            
             <td>{{employee.id_function}} </td>
+            <td><button (click) = "updateEmployee(employee.id)" class="btn btn-success" title="Editar"><fa-icon [icon]="faEdit"></fa-icon></button></td>
+            <td><button class="btn btn-danger" title="Excluir"><fa-icon [icon]="faTrash"></fa-icon></button></td>
         </tr>
     </tbody>
 </table>

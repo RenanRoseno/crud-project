@@ -9,6 +9,8 @@ import { Employee } from './employee';
 export class EmployeeService {
   private baseUrl = "http://localhost:8081/crud/funcionarios";
   private baseUrlSave = "http://localhost:8081/crud/funcionarios/salvar";
+
+
   constructor(private httpClient: HttpClient) { }
 
   getEmployeesList(): Observable<Employee[]> {
@@ -18,4 +20,13 @@ export class EmployeeService {
   createEmployee(employee: Employee): Observable<Object> {
     return this.httpClient.post(`${this.baseUrlSave}`, employee);
   }
+
+  getEmployeeById(id: number): Observable<Employee> {
+    return this.httpClient.get<Employee>(`${this.baseUrl}/${id}`);
+  }
+
+  updateEmployee(id: number, employee: Employee): Observable<Object> {
+    return this.httpClient.put(`${this.baseUrl}/${id}`, employee);
+  }
+
 }
