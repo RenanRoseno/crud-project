@@ -1,5 +1,5 @@
 <h3>Listagem de Estabelecimentos</h3>
-<table class="table table=striped">
+<table class="table table-striped">
     <thead>
         <th>#</th>
         <th>Nome</th>
@@ -8,8 +8,8 @@
         <th>Telefone</th>
     </thead>
     <tbody>
-        <tr *ngFor = "let establishment of establishments">
-            <td>{{establishment.id}}</td>
+        <tr *ngFor = "let establishment of establishments; let i = index">
+            <td>{{i + 1}}</td>
             <td>{{establishment.name}}</td>
             <td>{{establishment.cep}}</td>
             <td>{{establishment.street}}</td>
