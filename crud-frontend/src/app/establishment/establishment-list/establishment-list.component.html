@@ -4,17 +4,21 @@
         <th>#</th>
         <th>Nome</th>
         <th>CEP</th>
-        <th colspan="2">Endereço</th>
+        <th>Endereço</th>
         <th>Telefone</th>
+        <th colspan="2" class="text-center">Ações</th>
     </thead>
     <tbody>
         <tr *ngFor = "let establishment of establishments; let i = index">
             <td>{{i + 1}}</td>
             <td>{{establishment.name}}</td>
             <td>{{establishment.cep}}</td>
-            <td>{{establishment.street}}</td>
-            <td>{{ establishment.complement}}</td>
+            <td>{{establishment.street}}
+                , {{ establishment.complement}}</td>
             <td>{{establishment.phone_number}}</td>
+            
+            <td><button (click) = "updateEstablishment(establishment.id)" class="btn btn-success" title="Editar"><fa-icon [icon]="faEdit"></fa-icon></button></td>
+            <td><button  (click) = "deleteEstablishment(establishment.id)" class="btn btn-danger" title="Excluir"><fa-icon [icon]="faTrash"></fa-icon></button></td>
         </tr>
     </tbody>
 </table>

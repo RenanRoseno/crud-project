@@ -18,4 +18,16 @@ export class EstablishmentService {
   createEstablishment(establishment:Establishment): Observable<Object>{
     return this.httpClient.post(`${this.baseUrlSave}`, establishment);
   }
+
+  getEstablishmentById(id: number): Observable<Establishment> {
+    return this.httpClient.get<Establishment>(`${this.baseUrl}/${id}`);
+  }
+
+  updateEstablishment(id: number, establishment: Establishment): Observable<Object> {
+    return this.httpClient.put(`${this.baseUrl}/${id}`, establishment);
+  }
+
+  deleteEmployee(id:number): Observable<Object>{
+    return this.httpClient.delete(`${this.baseUrl}/${id}`);
+  }
 }
