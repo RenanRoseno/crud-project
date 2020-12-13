@@ -3,6 +3,7 @@ import { Employee } from '../employee';
 import { EmployeeService } from '../employee.service';
 import { faPlus, faList, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
+import Swal, { SweetAlertIcon } from 'sweetalert2';
 
 @Component({
   selector: 'app-employee-list',
@@ -33,9 +34,22 @@ export class EmployeeListComponent implements OnInit {
   }
 
   deleteEmployee(id : number){
-    this.employeeService.deleteEmployee(id).subscribe(data => {
-      console.log(data);
-      this.getEmployees();
-    })
+    Swal.fire({
+      title: 'Deseja realmente excluir?',
+      showDenyButton: true,
+      confirmButtonText: `Sim`,
+      denyButtonText: `Não`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.employeeService.deleteEmployee(id).subscribe(data => {
+          console.log(data);
+          this.getEmployees();
+        });
+      } else if (result.isDenied) {
+        
+      }
+    });
+
+  
   }
 }

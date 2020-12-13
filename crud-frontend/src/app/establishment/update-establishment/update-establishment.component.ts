@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { data } from 'jquery';
+import { AlertsService } from 'src/app/alerts/alerts.service';
 import { Establishment } from '../establishment';
 import { EstablishmentService } from '../establishment.service';
 
@@ -18,7 +19,8 @@ export class UpdateEstablishmentComponent implements OnInit {
 
   constructor(private establishmentService: EstablishmentService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private alertService : AlertsService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
@@ -34,7 +36,10 @@ export class UpdateEstablishmentComponent implements OnInit {
   onSubmit() {
     this.establishmentService.updateEstablishment(this.id, this.establishment).subscribe(data => {
       this.goToEstablishmentList();
-    }, error => console.log(error));
+      this.alertService.success("Editado com Sucesso", "Sucesso");
+    }, error => {
+      this.alertService.erro("Erro ao editar", "Erro");
+    });
   }
 
 }

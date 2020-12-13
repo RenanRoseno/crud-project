@@ -1,7 +1,12 @@
 <h3>Listagem de Profissionais </h3>
-<script>
-    let count = 0;
-</script>
+<div class="row">
+    <div class="col-md-2 offset-md-11">
+        <a href="funcionarios/cadastrar" class="btn btn-primary" >
+            <fa-icon [icon]="faPlus"></fa-icon> Novo
+        </a>
+    </div>
+</div>
+<br>
 <table class="table table-striped">
     <thead>
         <th>#</th>
@@ -14,22 +19,28 @@
         <th colspan="2" class="text-center">Ações</th>
     </thead>
     <tbody>
-        <tr *ngFor = "let employee of employees; let i = index">
+        <tr *ngFor="let employee of employees; let i = index">
             <td>{{i + 1}}</td>
             <td>{{employee.name}}</td>
             <td>{{employee.cep}}</td>
-            <td *ngIf = "employee.complement != null && employee.complement != ''"> Rua {{employee.street}}, {{employee.number}}, {{ employee.complement}}</td>
-            <td *ngIf = "employee.complement == null || employee.complement == ''"> Rua {{employee.street}}, {{employee.number}}</td>
-            
-            <td *ngIf = "employee.phone_number != null ">{{employee.phone_number}}</td> 
-            <td *ngIf = "employee.phone_number == null "> - </td> 
-            
-            <td *ngIf = "employee.home_phone != null">{{employee.home_phone}} </td>
-            <td *ngIf = "employee.home_phone == null"> - </td>
-            
+            <td *ngIf="employee.complement != null && employee.complement != ''"> Rua {{employee.street}},
+                {{employee.number}}, {{ employee.complement}}</td>
+            <td *ngIf="employee.complement == null || employee.complement == ''"> Rua {{employee.street}},
+                {{employee.number}}</td>
+
+            <td *ngIf="employee.phone_number != null ">{{employee.phone_number}}</td>
+            <td *ngIf="employee.phone_number == null "> - </td>
+
+            <td *ngIf="employee.home_phone != null">{{employee.home_phone}} </td>
+            <td *ngIf="employee.home_phone == null"> - </td>
+
             <td>{{employee.id_function}} </td>
-            <td><button (click) = "updateEmployee(employee.id)" class="btn btn-success" title="Editar"><fa-icon [icon]="faEdit"></fa-icon></button></td>
-            <td><button (click) = "deleteEmployee(employee.id)" class="btn btn-danger" title="Excluir"><fa-icon [icon]="faTrash"></fa-icon></button></td>
+            <td><button (click)="updateEmployee(employee.id)" class="btn btn-success" title="Editar">
+                    <fa-icon [icon]="faEdit"></fa-icon>
+                </button></td>
+            <td><button (click)="deleteEmployee(employee.id)" class="btn btn-danger" title="Excluir">
+                    <fa-icon [icon]="faTrash"></fa-icon>
+                </button></td>
         </tr>
     </tbody>
 </table>

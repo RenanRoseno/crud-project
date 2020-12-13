@@ -3,6 +3,8 @@ import { Establishment } from '../establishment';
 import { EstablishmentService } from '../establishment.service';
 import { faPlus, faList, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
+import { AlertsService } from 'src/app/alerts/alerts.service';
+import Swal, { SweetAlertIcon } from 'sweetalert2';
 
 @Component({
   selector: 'app-establishment-list',
@@ -17,7 +19,8 @@ export class EstablishmentListComponent implements OnInit {
 
   establishments: Establishment[];
   constructor(private establishmentService: EstablishmentService,
-    private router: Router) { }
+    private router: Router,
+    private alertService : AlertsService) { }
 
   ngOnInit(): void {
     this.getEstablishment();
@@ -33,10 +36,26 @@ export class EstablishmentListComponent implements OnInit {
     this.router.navigate(['estabelecimentos/editar', id])
   }
 
+
   deleteEstablishment(id:number){
-    this.establishmentService.deleteEmployee(id).subscribe(data =>{
-      console.log(data);
-      this.getEstablishment();
-    })
+    Swal.fire({
+      title: 'Deseja realmente excluir?',
+      showDenyButton: true,
+      confirmButtonText: `Sim`,
+      denyButtonText: `Não`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.establishmentService.deleteEmployee(id).subscribe(data =>{
+          console.log(data);
+          this.getEstablishment();
+        });
+      } else if (result.isDenied) {
+       
+      }else{
+        
+      }
+    });
+
+    
   }
 }

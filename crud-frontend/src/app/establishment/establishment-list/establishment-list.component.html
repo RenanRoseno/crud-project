@@ -1,4 +1,11 @@
 <h3>Listagem de Estabelecimentos</h3>
+<div class="row">
+    <div class="col-md-2 offset-md-11">
+        <a href="estabelecimento/cadastrar" class="btn btn-primary">
+            <fa-icon [icon]="faPlus"></fa-icon> Novo
+        </a>
+    </div>
+</div><br>
 <table class="table table-striped">
     <thead>
         <th>#</th>
@@ -9,18 +16,24 @@
         <th colspan="2" class="text-center">Ações</th>
     </thead>
     <tbody>
-        <tr *ngFor = "let establishment of establishments; let i = index">
+        <tr *ngFor="let establishment of establishments; let i = index">
             <td>{{i + 1}}</td>
             <td>{{establishment.name}}</td>
             <td>{{establishment.cep}}</td>
 
-            <td *ngIf = "establishment.complement != null && establishment.complement != ''"> Rua {{establishment.street}}, {{establishment.number}}, {{ establishment.complement}}</td>
-            <td *ngIf = "establishment.complement == null || establishment.complement == ''"> Rua {{establishment.street}}, {{establishment.number}}</td>
-            
+            <td *ngIf="establishment.complement != null && establishment.complement != ''"> Rua
+                {{establishment.street}}, {{establishment.number}}, {{ establishment.complement}}</td>
+            <td *ngIf="establishment.complement == null || establishment.complement == ''"> Rua
+                {{establishment.street}}, {{establishment.number}}</td>
+
             <td>{{establishment.phone_number}}</td>
-            
-            <td><button (click) = "updateEstablishment(establishment.id)" class="btn btn-success" title="Editar"><fa-icon [icon]="faEdit"></fa-icon></button></td>
-            <td><button  (click) = "deleteEstablishment(establishment.id)" class="btn btn-danger" title="Excluir"><fa-icon [icon]="faTrash"></fa-icon></button></td>
+
+            <td><button (click)="updateEstablishment(establishment.id)" class="btn btn-success" title="Editar">
+                    <fa-icon [icon]="faEdit"></fa-icon>
+                </button></td>
+            <td><button (click)="deleteEstablishment(establishment.id)" class="btn btn-danger" title="Excluir">
+                    <fa-icon [icon]="faTrash"></fa-icon>
+                </button></td>
         </tr>
     </tbody>
 </table>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertsService } from 'src/app/alerts/alerts.service';
 import { Employee } from '../employee';
 import { EmployeeService } from '../employee.service';
 
@@ -14,7 +15,8 @@ export class CreateEmployeeComponent implements OnInit {
   cepMask = [/[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/,/[0-9]/,/[0-9]/,];
   
   constructor(private employeeService : EmployeeService,
-    private router : Router) { }
+    private router : Router,
+    private alertService: AlertsService) { }
 
   ngOnInit(): void {
   }
@@ -25,12 +27,15 @@ export class CreateEmployeeComponent implements OnInit {
   saveEmployee(){
     this.employeeService.createEmployee(this.employee).subscribe(data =>{
       console.log(data);
-      this.goToEmployeeList();
+      this.alertService.success("Cadastrado com Sucesso", "Sucesso");
     },
-    error => console.log(error));
+    error => {
+      this.alertService.erro("Erro ao Cadastrar", "Erro");
+    });
   }
   onSubmit(){
     this.saveEmployee();
+    this.alertService.erro("Erro ao cadastrar", "Erro");
     console.log(this.employee);
   }
 }
