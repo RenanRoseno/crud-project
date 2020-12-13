@@ -13,8 +13,10 @@
             <td>{{i + 1}}</td>
             <td>{{establishment.name}}</td>
             <td>{{establishment.cep}}</td>
-            <td>{{establishment.street}}
-                , {{ establishment.complement}}</td>
+
+            <td *ngIf = "establishment.complement != null && establishment.complement != ''"> Rua {{establishment.street}}, {{establishment.number}}, {{ establishment.complement}}</td>
+            <td *ngIf = "establishment.complement == null || establishment.complement == ''"> Rua {{establishment.street}}, {{establishment.number}}</td>
+            
             <td>{{establishment.phone_number}}</td>
             
             <td><button (click) = "updateEstablishment(establishment.id)" class="btn btn-success" title="Editar"><fa-icon [icon]="faEdit"></fa-icon></button></td>
