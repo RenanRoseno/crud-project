@@ -5,4 +5,5 @@ export class Establishment {
     complement: string;
     cep: string;
     phone_number: string;
+    number: string
 }

@@ -25,6 +25,11 @@
                         [ngModelOptions]="{standalone: true}">
                 </div>
                 <div class="col">
+                    <label>Número</label>
+                    <input type="text" id="number" class="form-control" name="number" [(ngModel)]="employee.number"
+                        [ngModelOptions]="{standalone: true}">
+                </div>
+                <div class="col">
                     <label>Complemento</label>
                     <input type="text" id="complement" class="form-control" name="complement"
                         [(ngModel)]="employee.complement" [ngModelOptions]="{standalone: true}">

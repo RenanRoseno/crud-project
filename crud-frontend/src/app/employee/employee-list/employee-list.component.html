@@ -18,7 +18,9 @@
             <td>{{i + 1}}</td>
             <td>{{employee.name}}</td>
             <td>{{employee.cep}}</td>
-            <td>Rua {{employee.street}}, {{ employee.complement}}</td>
+            <td *ngIf = "employee.complement != null && employee.complement != ''"> Rua {{employee.street}}, {{employee.number}}, {{ employee.complement}}</td>
+            <td *ngIf = "employee.complement == null || employee.complement == ''"> Rua {{employee.street}}, {{employee.number}}</td>
+            
             <td *ngIf = "employee.phone_number != null ">{{employee.phone_number}}</td> 
             <td *ngIf = "employee.phone_number == null "> - </td> 
             

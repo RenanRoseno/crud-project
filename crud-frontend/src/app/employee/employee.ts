@@ -7,5 +7,6 @@ export class Employee {
     phone_number: string;
     home_phone:string;
     id_function: number;
+    number: string;
 
 }
