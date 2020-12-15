@@ -16,7 +16,7 @@ export class EstablishmentListComponent implements OnInit {
   faList = faList;
   faEdit = faEdit;
   faTrash = faTrash;
-
+  name : string;
   establishments: Establishment[];
   constructor(private establishmentService: EstablishmentService,
     private router: Router,
@@ -24,6 +24,15 @@ export class EstablishmentListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getEstablishment();
+  }
+  search() {
+    if (this.name != "") {
+      this.establishments = this.establishments.filter(res => {
+        return res.name.toLocaleLowerCase().match(this.name.toLocaleLowerCase())
+      })
+    } else if (this.name == "") {
+      this.ngOnInit();
+    }
   }
 
   private getEstablishment() {
@@ -35,7 +44,7 @@ export class EstablishmentListComponent implements OnInit {
   updateEstablishment (id:number){
     this.router.navigate(['estabelecimentos/editar', id])
   }
-
+  
 
   deleteEstablishment(id:number){
     Swal.fire({

@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import javax.persistence.Entity;
 
 @Entity
-@Table(name = "establishments")
+@Table(name = "functions")
 public class Function {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,4 +17,22 @@ public class Function {
 
 	@Column(name = "function")
 	private String function;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getFunction() {
+		return function;
+	}
+
+	public void setFunction(String function) {
+		this.function = function;
+	}
+	
+	
 }

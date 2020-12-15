@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Function } from '../function/function';
 import { Employee } from './employee';
 
 @Injectable({
@@ -9,10 +10,11 @@ import { Employee } from './employee';
 export class EmployeeService {
   private baseUrl = "http://localhost:8081/crud/funcionarios";
   private baseUrlSave = "http://localhost:8081/crud/funcionarios/salvar";
+  private baseUrlFunctions = "http://localhost:8081/crud/funcoes";
 
 
   constructor(private httpClient: HttpClient) { }
-
+  
   getEmployeesList(): Observable<Employee[]> {
     return this.httpClient.get<Employee[]>(`${this.baseUrl}`);
   }
@@ -32,5 +34,8 @@ export class EmployeeService {
   deleteEmployee(id:number): Observable<Object>{
     return this.httpClient.delete(`${this.baseUrl}/${id}`);
   }
-
+  
+  getFunctions():Observable<Function[]>{
+    return this.httpClient.get<Function[]>(`${this.baseUrlFunctions}`);
+  }
 }

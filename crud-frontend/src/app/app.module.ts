@@ -15,6 +15,12 @@ import {TextMaskModule} from 'angular2-text-mask';
 import { UpdateEmployeeComponent } from './employee/update-employee/update-employee.component';
 import { UpdateEstablishmentComponent } from './establishment/update-establishment/update-establishment.component';  
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import {DataTablesModule} from 'angular-datatables';
+import { CreateFunctionComponent } from './function/create-function/create-function.component';
+import { UpdateFunctionComponent } from './function/update-function/update-function.component';
+import { ListFunctionComponent } from './function/list-function/list-function.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +31,9 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     CreateEmployeeEstablComponent,
     UpdateEmployeeComponent,
     UpdateEstablishmentComponent,
+    CreateFunctionComponent,
+    UpdateFunctionComponent,
+    ListFunctionComponent,
 
   ],
   imports: [
@@ -35,7 +44,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     HttpClientModule,
     FontAwesomeModule,
     TextMaskModule,
-    SweetAlert2Module
+    SweetAlert2Module,
+    DataTablesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

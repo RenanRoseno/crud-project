@@ -22,12 +22,12 @@
                 <div class="col">
                     <label>Rua</label>
                     <input type="text" id="street" class="form-control" name="street" [(ngModel)]="employee.street"
-                        [ngModelOptions]="{standalone: true}">
+                        [ngModelOptions]="{standalone: true}" required>
                 </div>
                 <div class="col">
                     <label>Número</label>
                     <input type="text" id="number" class="form-control" name="number" [(ngModel)]="employee.number"
-                        [ngModelOptions]="{standalone: true}">
+                        [ngModelOptions]="{standalone: true}" required>
                 </div>
                 <div class="col">
                     <label>Complemento</label>
@@ -50,8 +50,11 @@
                 </div>
                 <div class="col">
                     <label>Função</label>
-                    <input type="text" id="function" class="form-control" name="function"
-                        [(ngModel)]="employee.id_function" [ngModelOptions]="{standalone: true}">
+                    
+                    <select id="function" class="form-control" name="function" [(ngModel)]="employee.id_function" [ngModelOptions]="{standalone: true}">
+                        <option value="0">Selecione</option>
+                        <option *ngFor = "let function of functions" value="{{function.id}}"> {{function.function}}</option>
+                    </select>
                 </div>
             </div>
         </div>

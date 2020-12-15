@@ -19,7 +19,7 @@ public class FunctionController {
 	private FunctionRepository functionRepository;
 	
 	@GetMapping("/funcoes")
-	public List<Function> getAllEmployeesEstab(){
+	public List<Function> getAllFunctions(){
 		return functionRepository.findAll();
 	}
 	

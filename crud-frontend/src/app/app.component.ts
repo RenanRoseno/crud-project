@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { faUser} from '@fortawesome/free-regular-svg-icons';
-import { faExchangeAlt, faStoreAlt, faPlus, faList} from '@fortawesome/free-solid-svg-icons';
+import { faExchangeAlt, faStoreAlt, faPlus, faList, faUserTie} from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -15,4 +15,5 @@ export class AppComponent {
   faStore = faStoreAlt;
   faPlus = faPlus;
   faList = faList;
+  faUserTie = faUserTie;
 }

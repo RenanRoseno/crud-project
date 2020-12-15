@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertsService } from 'src/app/alerts/alerts.service';
+import { Function } from 'src/app/function/function';
 import { Employee } from '../employee';
 import { EmployeeService } from '../employee.service';
 
@@ -10,15 +11,21 @@ import { EmployeeService } from '../employee.service';
   styleUrls: ['./create-employee.component.css']
 })
 export class CreateEmployeeComponent implements OnInit {
+  functions : Function[];
+  
   employee: Employee = new Employee();
+
   phoneMask = ['(', /[0-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/,/\d/,/\d/, '-', /\d/, /\d/, /\d/, /\d/];
   cepMask = [/[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/,/[0-9]/,/[0-9]/,];
   
+
   constructor(private employeeService : EmployeeService,
     private router : Router,
     private alertService: AlertsService) { }
 
   ngOnInit(): void {
+    this.getFunctions();
+    this.employee.id_function = 0;
   }
 
   goToEmployeeList(){
@@ -37,5 +44,11 @@ export class CreateEmployeeComponent implements OnInit {
     this.saveEmployee();
     this.alertService.erro("Erro ao cadastrar", "Erro");
     console.log(this.employee);
+  }
+
+  private getFunctions(){
+    this.employeeService.getFunctions().subscribe(data=>{
+      this.functions = data;
+    })
   }
 }

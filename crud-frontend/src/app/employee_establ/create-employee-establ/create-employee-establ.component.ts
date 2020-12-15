@@ -29,6 +29,8 @@ export class CreateEmployeeEstablComponent implements OnInit {
   ngOnInit(): void {
     this.getEmployees();
     this.getEstablishment();
+    this.employeeEstabl.id_employee = 0;
+    this.employeeEstabl.id_establishment = 0;
   }
   private getEmployees() {
     this.employeeEstablService.getEmployeesList().subscribe(data => {
