@@ -1,1 +1,32 @@
-<p>list-function works!</p>
+<h3>Listagem de Funções </h3>
+<div class="row">
+  
+    <div class="col-md-2 offset-md-11">
+        <a href="funcoes/cadastrar" class="btn btn-primary">
+            <fa-icon [icon]="faPlus"></fa-icon> Novo
+        </a>
+    </div>
+</div>
+<br>
+<input type="text" placeholder="Pesquisar por Nome" class="form-control" [(ngModel)] = "functionSea" (input)="search()"><br>
+
+<table class="table table-striped">
+    <thead>
+        <th>#</th>
+        <th>Nome</th>
+        <th>Ações</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let func of functions; let i = index">
+            <td>{{i + 1}}</td>
+            <td>{{func.function}}</td>
+
+            <td><button class="btn btn-success" (click) = "updateFunction(func.id)" title="Editar">
+                    <fa-icon [icon]="faEdit"></fa-icon>
+                </button> &nbsp;
+                <button class="btn btn-danger" (click) = "deleteFunction(func.id)" title="Excluir">
+                    <fa-icon [icon]="faTrash"></fa-icon>
+                </button></td>
+        </tr>
+    </tbody>
+</table>

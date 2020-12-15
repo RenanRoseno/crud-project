@@ -30,7 +30,7 @@ public class FunctionController {
 		return functionRepository.findAll();
 	}
 	
-	@PostMapping("funcoes/cadastrar")
+	@PostMapping("funcoes/salvar")
 	public Function createFunction(@RequestBody Function function) {
 		return functionRepository.save(function);
 	}

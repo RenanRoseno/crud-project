@@ -1,4 +1,4 @@
-export class Function {
+export class FunctionE {
     id: number;
     function : string;
 }

@@ -25,7 +25,7 @@ const routes: Routes = [
 
   {path: 'funcoes', component:ListFunctionComponent},
   {path: 'funcoes/cadastrar', component:CreateFunctionComponent},
-  {path: 'funcoes/editar', component:UpdateFunctionComponent},
+  {path: 'funcoes/editar/:id', component:UpdateFunctionComponent},
   
   {path: '', redirectTo: 'funcionarios', pathMatch:'full'}
 ];

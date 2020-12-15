@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertsService } from 'src/app/alerts/alerts.service';
-import { Function } from 'src/app/function/function';
+import { FunctionE } from 'src/app/function/function';
 import { Employee } from '../employee';
 import { EmployeeService } from '../employee.service';
 
@@ -11,7 +11,7 @@ import { EmployeeService } from '../employee.service';
   styleUrls: ['./create-employee.component.css']
 })
 export class CreateEmployeeComponent implements OnInit {
-  functions : Function[];
+  functions : FunctionE[];
   
   employee: Employee = new Employee();
 
@@ -42,7 +42,6 @@ export class CreateEmployeeComponent implements OnInit {
   }
   onSubmit(){
     this.saveEmployee();
-    this.alertService.erro("Erro ao cadastrar", "Erro");
     console.log(this.employee);
   }
 

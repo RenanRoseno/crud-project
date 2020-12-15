@@ -1,7 +1,7 @@
-import { Function } from './function';
+import { FunctionE } from './function';
 
-describe('Function', () => {
+describe('FunctionE', () => {
   it('should create an instance', () => {
-    expect(new Function()).toBeTruthy();
+    expect(new FunctionE()).toBeTruthy();
   });
 });

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertsService } from 'src/app/alerts/alerts.service';
-import { Function } from 'src/app/function/function';
+import { FunctionE } from 'src/app/function/function';
 import { Employee } from '../employee';
 import { EmployeeService } from '../employee.service';
 
@@ -15,7 +15,7 @@ export class UpdateEmployeeComponent implements OnInit {
   phoneMask = ['(', /[0-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   cepMask = [/[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/, /[0-9]/,];
   id: number;
-  functions : Function[];
+  functions : FunctionE[];
 
   constructor(private employeeService: EmployeeService,
     private route: ActivatedRoute,

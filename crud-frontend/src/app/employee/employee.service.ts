@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Function } from '../function/function';
+import { FunctionE } from '../function/function';
 import { Employee } from './employee';
 
 @Injectable({
@@ -35,7 +35,7 @@ export class EmployeeService {
     return this.httpClient.delete(`${this.baseUrl}/${id}`);
   }
   
-  getFunctions():Observable<Function[]>{
-    return this.httpClient.get<Function[]>(`${this.baseUrlFunctions}`);
+  getFunctions():Observable<FunctionE[]>{
+    return this.httpClient.get<FunctionE[]>(`${this.baseUrlFunctions}`);
   }
 }

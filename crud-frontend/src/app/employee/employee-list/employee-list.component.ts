@@ -4,7 +4,7 @@ import { EmployeeService } from '../employee.service';
 import { faPlus, faList, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 import Swal, { SweetAlertIcon } from 'sweetalert2';
-import { Function } from 'src/app/function/function';
+import { FunctionE } from 'src/app/function/function';
 
 @Component({
   selector: 'app-employee-list',
@@ -19,7 +19,7 @@ export class EmployeeListComponent implements OnInit {
   faEdit = faEdit;
   faTrash = faTrash;
 
-  functions : Function[];
+  functions : FunctionE[];
   employees: Employee[];
   constructor(private employeeService: EmployeeService,
     private router: Router) { }
