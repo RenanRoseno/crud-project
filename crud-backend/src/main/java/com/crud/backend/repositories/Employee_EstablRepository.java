@@ -10,15 +10,17 @@ import com.crud.backend.models.Employee_Establ;
 
 @Repository
 public interface Employee_EstablRepository extends JpaRepository<Employee_Establ, Integer> {
-	
+
+	// ---- DELETE ESTABLISHMENT RELATION
+
 	@Modifying
 	@Transactional(readOnly = false)
-	@Query("DELETE FROM Employee_Establ u where u.id_establishment = ?1")
+	@Query("DELETE FROM Employee_Establ ee where ee.id_establishment = ?1")
 	int deleteByEstablishmentId(int id_establishment);
-	
-	
+
+	// ----- DELETE EMPLOYEE RELATION
 	@Modifying
 	@Transactional(readOnly = false)
-	@Query("DELETE FROM Employee_Establ u where u.id_employee = ?1")
+	@Query("DELETE FROM Employee_Establ ee where ee.id_employee = ?1")
 	int deleteByEmployeeId(int id_employee);
 }

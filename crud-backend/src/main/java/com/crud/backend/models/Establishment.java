@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 @Entity
 @Table(name = "establishments")
 public class Establishment {
+
+	// -------- FIELDS
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -28,10 +30,11 @@ public class Establishment {
 
 	@Column(name = "phone_number")
 	private String phone_number;
-	
+
 	@Column(name = "number")
 	private String number;
 
+	// --------- CONSTRUCTORS
 	public Establishment(String name, String street, String complement, String cep, String phone_number) {
 		super();
 		this.name = name;
@@ -44,6 +47,8 @@ public class Establishment {
 	public Establishment() {
 
 	}
+
+	// ---------- GETTERS AND SETTERS
 
 	public int getId() {
 		return id;
@@ -100,6 +105,5 @@ public class Establishment {
 	public void setNumber(String number) {
 		this.number = number;
 	}
-	
-	
+
 }

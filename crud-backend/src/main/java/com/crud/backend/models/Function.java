@@ -11,12 +11,17 @@ import javax.persistence.Entity;
 @Entity
 @Table(name = "functions")
 public class Function {
+
+	// --------- FIELDS
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@Column(name = "function")
 	private String function;
+
+	// --------- GETTERS AND SETTERS
 
 	public int getId() {
 		return id;
@@ -33,6 +38,5 @@ public class Function {
 	public void setFunction(String function) {
 		this.function = function;
 	}
-	
-	
+
 }

@@ -28,20 +28,25 @@ public class EmployeeController {
 
 	@Autowired
 	private EmployeeRepository employeeRepository;
-	
+
+	// SETTING RELATION REPOSITORY TO DELETE FUNCTION
 	@Autowired
 	private Employee_EstablRepository employeeEstabRepository;
 
+	// ----------------- LIST EMPLOYEES
 	@GetMapping("/funcionarios")
 	public List<Employee> getAllEmployees() {
 		return employeeRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
 	}
+
+	// ------------------ CREATE EMPLOYEE
 
 	@PostMapping("/funcionarios/salvar")
 	public Employee createEmployee(@RequestBody Employee employee) {
 		return employeeRepository.save(employee);
 	}
 
+	// ----------------- VIEW EMPLOYEE BY ID
 	@GetMapping("/funcionarios/{id}")
 	public ResponseEntity<Employee> getEmployeeById(@PathVariable Integer id) {
 		Employee employee = employeeRepository.findById(id)
@@ -49,6 +54,7 @@ public class EmployeeController {
 		return ResponseEntity.ok(employee);
 	}
 
+	// --------------- UPDATE EMPLOYEEE
 	@PutMapping("/funcionarios/{id}")
 	public ResponseEntity<Employee> updateEmployee(@PathVariable Integer id, @RequestBody Employee employee) {
 		Employee e1 = employeeRepository.findById(id)
@@ -67,11 +73,12 @@ public class EmployeeController {
 		return ResponseEntity.ok(updatedEmployee);
 	}
 
+	// ---------------- DELETE EMPLOYEE WITH RELATIONS
 	@DeleteMapping("/funcionarios/{id}")
 	public ResponseEntity<Map<String, Boolean>> deleteEmployee(@PathVariable Integer id) {
 		Employee employee = employeeRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Funcionário não existe com o id" + id));
-		
+
 		employeeEstabRepository.deleteByEmployeeId(employee.getId());
 		employeeRepository.delete(employee);
 

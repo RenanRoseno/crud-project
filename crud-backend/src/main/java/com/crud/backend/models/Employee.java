@@ -12,6 +12,9 @@ import javax.persistence.Entity;
 @Table(name = "employees")
 
 public class Employee {
+
+	// -------- FIELDS
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -36,9 +39,11 @@ public class Employee {
 
 	@Column(name = "number")
 	private String number;
-	
+
 	@Column(name = "id_function")
 	private int id_function;
+
+	// --------- CONSTRUCTORS
 
 	public Employee() {
 
@@ -54,6 +59,8 @@ public class Employee {
 		this.home_phone = home_phone;
 		this.id_function = id_function;
 	}
+
+	// ------ GETTERS AND SETTERS
 
 	public int getId() {
 		return id;
@@ -126,6 +133,5 @@ public class Employee {
 	public void setNumber(String number) {
 		this.number = number;
 	}
-	
-	
+
 }

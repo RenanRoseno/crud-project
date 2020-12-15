@@ -24,48 +24,51 @@ import com.crud.backend.repositories.FunctionRepository;
 public class FunctionController {
 	@Autowired
 	private FunctionRepository functionRepository;
-	
+
+	// ------------- LIST FUNCTIONS
 	@GetMapping("/funcoes")
-	public List<Function> getAllFunctions(){
+	public List<Function> getAllFunctions() {
 		return functionRepository.findAll();
 	}
-	
+
+	// ------------- CREATE FUNCTIONS
 	@PostMapping("funcoes/salvar")
 	public Function createFunction(@RequestBody Function function) {
 		return functionRepository.save(function);
 	}
-	
+
+	// ------------- VIEW FUNCTION BY ID
 	@GetMapping("/funcoes/{id}")
 	public ResponseEntity<Function> getFunctionById(@PathVariable Integer id) {
 		Function function = functionRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Funcionário não existe com o id: " + id));
 		return ResponseEntity.ok(function);
 	}
-	
+
+	// -------------- UPDATE FUNCTION
 	@PutMapping("/funcoes/{id}")
 	public ResponseEntity<Function> updateFunction(@PathVariable Integer id, @RequestBody Function function) {
 		Function f1 = functionRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Funcionário não existe com o id: " + id));
-		
+
 		f1.setFunction(function.getFunction());
 
 		Function updatedFunction = functionRepository.save(function);
 
 		return ResponseEntity.ok(updatedFunction);
 	}
-	
 
+	// ------------- DELETE FUNCTION
 	@DeleteMapping("/funcoes/{id}")
 	public ResponseEntity<Map<String, Boolean>> deleteFunction(@PathVariable Integer id) {
 		Function function = functionRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Funcionário não existe com o id" + id));
-		
+
 		functionRepository.delete(function);
-		
+
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("Excluido", Boolean.TRUE);
 
 		return ResponseEntity.ok(response);
 	}
 }
-

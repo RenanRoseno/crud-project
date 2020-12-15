@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 @Entity
 @Table(name = "employees_establ")
 public class Employee_Establ {
+
+// ------ FIELDS
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -21,6 +23,7 @@ public class Employee_Establ {
 	@Column(name = "id_establishment")
 	private int id_establishment;
 
+// -------  CONSTRUCTORS
 	public Employee_Establ() {
 
 	}
@@ -30,6 +33,8 @@ public class Employee_Establ {
 		this.id_employee = id_employee;
 		this.id_establishment = id_Establishment;
 	}
+
+// ------- GETTERS AND SETTERS 
 
 	public int getId() {
 		return id;

@@ -24,31 +24,38 @@ import com.crud.backend.repositories.EstablishmentRepository;
 @RestController
 @RequestMapping("/crud/")
 public class EstablishmentController {
+
 	@Autowired
 	private EstablishmentRepository establishmentRepository;
-	
+
+	// SETTING RELATION REPOSITORY TO DELETE FUNCTION
 	@Autowired
 	private Employee_EstablRepository employeeEstabRepository;
-	
+
+	// --------- LIST ESTABLISHMENTS
 	@GetMapping("/estabelecimentos")
-	public List<Establishment> getAllEmployeesEstab(){
+	public List<Establishment> getAllEmployeesEstab() {
 		return establishmentRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
 	}
-	
+
+	// ---------- CREATE ESTABLISHMENTS
 	@PostMapping("/estabelecimentos/salvar")
-	public Establishment createEstablishment (@RequestBody Establishment establishment) {
+	public Establishment createEstablishment(@RequestBody Establishment establishment) {
 		return establishmentRepository.save(establishment);
 	}
-	
+
+	// ----------- VIEW ESTABLISHMENT BY ID
 	@GetMapping("/estabelecimentos/{id}")
 	public ResponseEntity<Establishment> getEstablishmentById(@PathVariable Integer id) {
 		Establishment establishment = establishmentRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Estabelecimento não existe com o id: " + id));
 		return ResponseEntity.ok(establishment);
 	}
-	
+
+	// ------------ UPDATE ESTABLISHMENT
 	@PutMapping("/estabelecimentos/{id}")
-	public ResponseEntity<Establishment> updateEstablishment(@PathVariable Integer id, @RequestBody Establishment establishment) {
+	public ResponseEntity<Establishment> updateEstablishment(@PathVariable Integer id,
+			@RequestBody Establishment establishment) {
 		Establishment estab = establishmentRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Estabelecimento não existe com o id: " + id));
 
@@ -63,13 +70,13 @@ public class EstablishmentController {
 
 		return ResponseEntity.ok(updatedEstablishment);
 	}
-	
-	
+
+	// ------------ DELETE ESTABLISHMENT WITH RELATIONS
 	@DeleteMapping("/estabelecimentos/{id}")
 	public ResponseEntity<Map<String, Boolean>> deleteEstablishment(@PathVariable Integer id) {
 		Establishment establishment = establishmentRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Estabelecimento não existe com o id" + id));
-		
+
 		employeeEstabRepository.deleteByEstablishmentId(establishment.getId());
 		establishmentRepository.delete(establishment);
 
