@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertsService } from 'src/app/alerts/alerts.service';
-import { FunctionE } from '../function';
-import { FunctionService } from '../function.service';
+import { AlertsService } from 'src/app/services/alerts.service';
+import { FunctionE } from '../../models/function';
+import { FunctionService } from '../../services/function.service';
 import { faPlus, faList, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({

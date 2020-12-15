@@ -1,16 +1,13 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Employee } from '../../employee/employee';
-import { Establishment } from '../../establishment/establishment';
-import { EmployeeEstabl } from '../employee-establ';
-import Swal from 'sweetalert2';
-// ES6 Modules or TypeScript
-
-
-
-import { EmployeeEstablService } from '../employee-establ.service';
-import { AlertsService } from 'src/app/alerts/alerts.service';
+import { Employee } from '../../models/employee';
+import { Establishment } from '../../models/establishment';
+import { EmployeeEstabl } from '../../models/employee-establ';
+import { EmployeeEstablService } from '../../services/employee-establ.service';
+import { AlertsService } from 'src/app/services/alerts.service';
+import { EmployeeService } from 'src/app/services/employee.service';
+import { EstablishmentService } from 'src/app/services/establishment.service';
 
 @Component({
   selector: 'app-create-employee-establ',
@@ -24,6 +21,8 @@ export class CreateEmployeeEstablComponent implements OnInit {
 
   constructor(private employeeEstablService: EmployeeEstablService,
     private router: Router,
+    private employeeService : EmployeeService,
+    private establishmentService : EstablishmentService,
     private alertService: AlertsService) { }
 
   ngOnInit(): void {
@@ -34,13 +33,13 @@ export class CreateEmployeeEstablComponent implements OnInit {
   }
   //------- LIST EMPLOYEES
   private getEmployees() {
-    this.employeeEstablService.getEmployeesList().subscribe(data => {
+    this.employeeService.getEmployeesList().subscribe(data => {
       this.employees = data;
     });
   }
 //---------- LIST ESTABLISHMENT
   private getEstablishment() {
-    this.employeeEstablService.getEstablishmentList().subscribe(data => {
+    this.establishmentService.getEstablishmentList().subscribe(data => {
       this.establishments = data;
     })
   }

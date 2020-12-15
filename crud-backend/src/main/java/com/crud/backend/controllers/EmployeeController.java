@@ -1,11 +1,9 @@
 package com.crud.backend.controllers;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,75 +14,50 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.crud.backend.exceptions.ResourceNotFoundException;
 import com.crud.backend.models.Employee;
-import com.crud.backend.repositories.EmployeeRepository;
-import com.crud.backend.repositories.Employee_EstablRepository;
+import com.crud.backend.services.EmployeeService;
 
 @RestController
-@RequestMapping("/crud/")
+@RequestMapping("/funcionarios")
 
 public class EmployeeController {
 
 	@Autowired
-	private EmployeeRepository employeeRepository;
-
-	// SETTING RELATION REPOSITORY TO DELETE FUNCTION
-	@Autowired
-	private Employee_EstablRepository employeeEstabRepository;
+	EmployeeService employeeService;
+	
+	@GetMapping("/search/{name}")
+	public List<Employee> search(@PathVariable String name){
+		return employeeService.findByName(name);
+	}
 
 	// ----------------- LIST EMPLOYEES
-	@GetMapping("/funcionarios")
+	@GetMapping("/")
 	public List<Employee> getAllEmployees() {
-		return employeeRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
+		return employeeService.findAll();
 	}
 
 	// ------------------ CREATE EMPLOYEE
 
-	@PostMapping("/funcionarios/salvar")
+	@PostMapping("/")
 	public Employee createEmployee(@RequestBody Employee employee) {
-		return employeeRepository.save(employee);
+		return employeeService.save(employee);
 	}
 
 	// ----------------- VIEW EMPLOYEE BY ID
-	@GetMapping("/funcionarios/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Employee> getEmployeeById(@PathVariable Integer id) {
-		Employee employee = employeeRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Funcionário não existe com o id: " + id));
-		return ResponseEntity.ok(employee);
+		return employeeService.findById(id);
 	}
 
 	// --------------- UPDATE EMPLOYEEE
-	@PutMapping("/funcionarios/{id}")
+	@PutMapping("/{id}")
 	public ResponseEntity<Employee> updateEmployee(@PathVariable Integer id, @RequestBody Employee employee) {
-		Employee e1 = employeeRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Funcionário não existe com o id: " + id));
-
-		e1.setCep(employee.getCep());
-		e1.setComplement(employee.getComplement());
-		e1.setHome_phone(employee.getHome_phone());
-		e1.setName(employee.getName());
-		e1.setPhone_number(employee.getPhone_number());
-		e1.setStreet(employee.getStreet());
-		e1.setNumber(employee.getNumber());
-
-		Employee updatedEmployee = employeeRepository.save(employee);
-
-		return ResponseEntity.ok(updatedEmployee);
+		return employeeService.updateEmployee(id, employee);
 	}
 
 	// ---------------- DELETE EMPLOYEE WITH RELATIONS
-	@DeleteMapping("/funcionarios/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Map<String, Boolean>> deleteEmployee(@PathVariable Integer id) {
-		Employee employee = employeeRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Funcionário não existe com o id" + id));
-
-		employeeEstabRepository.deleteByEmployeeId(employee.getId());
-		employeeRepository.delete(employee);
-
-		Map<String, Boolean> response = new HashMap<>();
-		response.put("Excluido", Boolean.TRUE);
-
-		return ResponseEntity.ok(response);
+		return employeeService.deleteEmployee(id);
 	}
 }

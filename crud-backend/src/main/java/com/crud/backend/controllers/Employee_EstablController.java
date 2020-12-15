@@ -10,25 +10,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.crud.backend.models.Employee_Establ;
-import com.crud.backend.repositories.Employee_EstablRepository;
+import com.crud.backend.services.Employee_EstablService;
 
 @RestController
-@RequestMapping("/crud/")
+@RequestMapping("/funcionarios-estabelecimentos")
 public class Employee_EstablController {
 
+	
 	@Autowired
-	private Employee_EstablRepository employeeEstabRepository;
+	Employee_EstablService employeeEstabService;
 
 	// --------------- LIST RELATION
-	@GetMapping("/funcionarios/estabelecimentos")
+	@GetMapping("/")
 	public List<Employee_Establ> getAllEmployeesEstab() {
-		return employeeEstabRepository.findAll();
+		return employeeEstabService.findAll();
 	}
 
 	// ----------- CREATE RELATION
-	@PostMapping("/funcionarios/estabelecimentos/salvar")
+	@PostMapping("/")
 	public Employee_Establ createEmployee_Establ(@RequestBody Employee_Establ employee_establ) {
-		return employeeEstabRepository.save(employee_establ);
+		return employeeEstabService.save(employee_establ);
 	}
 
 }

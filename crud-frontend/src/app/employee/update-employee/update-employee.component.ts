@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertsService } from 'src/app/alerts/alerts.service';
-import { FunctionE } from 'src/app/function/function';
-import { Employee } from '../employee';
-import { EmployeeService } from '../employee.service';
+import { AlertsService } from 'src/app/services/alerts.service';
+import { FunctionE } from 'src/app/models/function';
+import { Employee } from '../../models/employee';
+import { EmployeeService } from '../../services/employee.service';
 import { faPlus, faList, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FunctionService } from 'src/app/services/function.service';
 
 @Component({
   selector: 'app-update-employee',
@@ -26,7 +27,9 @@ export class UpdateEmployeeComponent implements OnInit {
   faEdit = faEdit;
   faTrash = faTrash;
 
-  constructor(private employeeService: EmployeeService,
+  constructor(
+    private employeeService: EmployeeService,
+    private functionService:FunctionService,
     private route: ActivatedRoute,
     private router: Router,
     private alertService : AlertsService) { }
@@ -54,7 +57,7 @@ export class UpdateEmployeeComponent implements OnInit {
   }
   // LIST FUNCTIONS
   private getFunctions(){
-    this.employeeService.getFunctions().subscribe(data=>{
+    this.functionService.getFunctions().subscribe(data=>{
       this.functions = data;
     })
   }

@@ -1,6 +1,5 @@
 package com.crud.backend.controllers;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,60 +14,48 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.crud.backend.exceptions.ResourceNotFoundException;
 import com.crud.backend.models.Function;
-import com.crud.backend.repositories.FunctionRepository;
+import com.crud.backend.services.FunctionService;
 
 @RestController
-@RequestMapping("/crud/")
+@RequestMapping("/funcoes")
 public class FunctionController {
 	@Autowired
-	private FunctionRepository functionRepository;
+	private FunctionService functionService;
+	
+	@GetMapping("/search/{name}")
+	public List<Function> searchFunction(@PathVariable String name) {
+		return functionService.findByName(name);
+	}
 
 	// ------------- LIST FUNCTIONS
-	@GetMapping("/funcoes")
+	@GetMapping("/")
 	public List<Function> getAllFunctions() {
-		return functionRepository.findAll();
+		return functionService.findAll();
 	}
 
 	// ------------- CREATE FUNCTIONS
-	@PostMapping("funcoes/salvar")
+	@PostMapping("/")
 	public Function createFunction(@RequestBody Function function) {
-		return functionRepository.save(function);
+		return functionService.save(function);
 	}
 
 	// ------------- VIEW FUNCTION BY ID
-	@GetMapping("/funcoes/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Function> getFunctionById(@PathVariable Integer id) {
-		Function function = functionRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Funcionário não existe com o id: " + id));
-		return ResponseEntity.ok(function);
+		return functionService.findById(id);
 	}
 
 	// -------------- UPDATE FUNCTION
-	@PutMapping("/funcoes/{id}")
+	@PutMapping("/{id}")
 	public ResponseEntity<Function> updateFunction(@PathVariable Integer id, @RequestBody Function function) {
-		Function f1 = functionRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Funcionário não existe com o id: " + id));
-
-		f1.setFunction(function.getFunction());
-
-		Function updatedFunction = functionRepository.save(function);
-
-		return ResponseEntity.ok(updatedFunction);
+		return functionService.updateFunction(id, function);
 	}
 
 	// ------------- DELETE FUNCTION
-	@DeleteMapping("/funcoes/{id}")
+	
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Map<String, Boolean>> deleteFunction(@PathVariable Integer id) {
-		Function function = functionRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Funcionário não existe com o id" + id));
-
-		functionRepository.delete(function);
-
-		Map<String, Boolean> response = new HashMap<>();
-		response.put("Excluido", Boolean.TRUE);
-
-		return ResponseEntity.ok(response);
+		return functionService.deleteFunction(id);
 	}
 }

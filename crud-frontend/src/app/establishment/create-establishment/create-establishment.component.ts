@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertsService } from 'src/app/alerts/alerts.service';
-import { Establishment } from '../establishment';
-import { EstablishmentService } from '../establishment.service';
+import { AlertsService } from 'src/app/services/alerts.service';
+import { Establishment } from 'src/app/models/establishment';
+import { EstablishmentService } from '../../services/establishment.service';
 import { faPlus, faList, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Establishment } from '../establishment';
-import { EstablishmentService } from '../establishment.service';
+import { Establishment } from 'src/app/models/establishment';
+import { EstablishmentService } from 'src/app/services/establishment.service';
 import { faPlus, faList, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
-import { AlertsService } from 'src/app/alerts/alerts.service';
+import { AlertsService } from 'src/app/services/alerts.service';
 import Swal, { SweetAlertIcon } from 'sweetalert2';
+import { errorMessage, errorT, success, successMessage } from 'src/app/utils/constants';
 
 @Component({
   selector: 'app-establishment-list',
@@ -18,7 +19,9 @@ export class EstablishmentListComponent implements OnInit {
   faTrash = faTrash;
   name : string;
   establishments: Establishment[];
-  constructor(private establishmentService: EstablishmentService,
+
+  constructor(
+    private establishmentService: EstablishmentService,
     private router: Router,
     private alertService : AlertsService) { }
 
@@ -27,9 +30,9 @@ export class EstablishmentListComponent implements OnInit {
   }
   search() {
     if (this.name != "") {
-      this.establishments = this.establishments.filter(res => {
-        return res.name.toLocaleLowerCase().match(this.name.toLocaleLowerCase())
-      })
+      this.establishmentService.searchEstablishmentList(this.name).subscribe(data => {
+        this.establishments = data;
+      });
     } else if (this.name == "") {
       this.ngOnInit();
     }
@@ -45,7 +48,6 @@ export class EstablishmentListComponent implements OnInit {
     this.router.navigate(['estabelecimentos/editar', id])
   }
   
-
   deleteEstablishment(id:number){
     Swal.fire({
       title: 'Deseja realmente excluir?',
@@ -56,7 +58,10 @@ export class EstablishmentListComponent implements OnInit {
       if (result.isConfirmed) {
         this.establishmentService.deleteEmployee(id).subscribe(data =>{
           console.log(data);
+          this.alertService.success(successMessage, success);
           this.getEstablishment();
+        }, erro => {
+          this.alertService.erro(errorMessage, errorT);
         });
       } else if (result.isDenied) {
        

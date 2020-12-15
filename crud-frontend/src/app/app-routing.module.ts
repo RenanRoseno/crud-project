@@ -10,31 +10,31 @@ import { UpdateEstablishmentComponent } from './establishment/update-establishme
 import { CreateFunctionComponent } from './function/create-function/create-function.component';
 import { ListFunctionComponent } from './function/list-function/list-function.component';
 import { UpdateFunctionComponent } from './function/update-function/update-function.component';
+import { createEmployee, editEmployee, listEmployee, listEstablishment, createEstablishment, editEstablishment, listFunction, createFunction, editFunction, listEmployeeEstabl, createEmployeeEstabl} from './utils/constants';
 
 const routes: Routes = [
 
   // CRUD FUNCIONÁRIOS ROUTES
-  {path: 'funcionarios', component: EmployeeListComponent},
-  {path: 'funcionarios/cadastrar', component: CreateEmployeeComponent},
-  {path: 'funcionarios/editar/:id', component: UpdateEmployeeComponent},
+  {path: listEmployee, component: EmployeeListComponent},
+  {path: createEmployee, component: CreateEmployeeComponent},
+  {path: editEmployee, component: UpdateEmployeeComponent},
   
   // CRUD ESTABELECIMENTO ROUTES
-  {path: 'estabelecimentos', component: EstablishmentListComponent},
-  {path: 'estabelecimento/cadastrar', component: CreateEstablishmentComponent},
-  {path: 'estabelecimentos/editar/:id', component: UpdateEstablishmentComponent},
+  {path: listEstablishment, component: EstablishmentListComponent},
+  {path: createEstablishment, component: CreateEstablishmentComponent},
+  {path: editEstablishment, component: UpdateEstablishmentComponent},
   
   
   // CRUD FUNÇÕES ROUTES
-  {path: 'funcoes', component:ListFunctionComponent},
-  {path: 'funcoes/cadastrar', component:CreateFunctionComponent},
-  {path: 'funcoes/editar/:id', component:UpdateFunctionComponent},
+  {path: listFunction, component:ListFunctionComponent},
+  {path: createFunction, component:CreateFunctionComponent},
+  {path: editFunction, component:UpdateFunctionComponent},
 
   // CREATE RELATION ROUTES
-  {path: 'funcionarios-establ', component: CreateEmployeeEstablComponent},
-  {path: 'funcionarios-establ/cadastrar', component: CreateEmployeeEstablComponent},
+  {path: listEmployeeEstabl, component: CreateEmployeeEstablComponent},
+  {path: createEmployeeEstabl, component: CreateEmployeeEstablComponent},
   
-  
-  {path: '', redirectTo: 'funcionarios', pathMatch:'full'}
+  {path: '', redirectTo: listEmployee, pathMatch:'full'}
 ];
 
 @NgModule({

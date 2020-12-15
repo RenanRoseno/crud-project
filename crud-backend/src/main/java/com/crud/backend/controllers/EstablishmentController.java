@@ -1,11 +1,9 @@
 package com.crud.backend.controllers;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,73 +14,48 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.crud.backend.exceptions.ResourceNotFoundException;
 import com.crud.backend.models.Establishment;
-import com.crud.backend.repositories.Employee_EstablRepository;
-import com.crud.backend.repositories.EstablishmentRepository;
+import com.crud.backend.services.EstablishmentService;
 
 @RestController
-@RequestMapping("/crud/")
+@RequestMapping("/estabelecimentos")
 public class EstablishmentController {
 
 	@Autowired
-	private EstablishmentRepository establishmentRepository;
+	private EstablishmentService establishmentService;
 
-	// SETTING RELATION REPOSITORY TO DELETE FUNCTION
-	@Autowired
-	private Employee_EstablRepository employeeEstabRepository;
-
+	@GetMapping("/search/{name}")
+	public List<Establishment> searchEstablishment(@PathVariable String name) {
+		return establishmentService.findByName(name);
+	}
 	// --------- LIST ESTABLISHMENTS
-	@GetMapping("/estabelecimentos")
+	@GetMapping("/")
 	public List<Establishment> getAllEmployeesEstab() {
-		return establishmentRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
+		return establishmentService.findAll();
 	}
 
 	// ---------- CREATE ESTABLISHMENTS
-	@PostMapping("/estabelecimentos/salvar")
+	@PostMapping("/")
 	public Establishment createEstablishment(@RequestBody Establishment establishment) {
-		return establishmentRepository.save(establishment);
+		return establishmentService.save(establishment);
 	}
 
 	// ----------- VIEW ESTABLISHMENT BY ID
-	@GetMapping("/estabelecimentos/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Establishment> getEstablishmentById(@PathVariable Integer id) {
-		Establishment establishment = establishmentRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Estabelecimento não existe com o id: " + id));
-		return ResponseEntity.ok(establishment);
+		return establishmentService.findById(id);
 	}
 
 	// ------------ UPDATE ESTABLISHMENT
-	@PutMapping("/estabelecimentos/{id}")
+	@PutMapping("/{id}")
 	public ResponseEntity<Establishment> updateEstablishment(@PathVariable Integer id,
 			@RequestBody Establishment establishment) {
-		Establishment estab = establishmentRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Estabelecimento não existe com o id: " + id));
-
-		estab.setCep(establishment.getCep());
-		estab.setComplement(establishment.getComplement());
-		estab.setName(establishment.getName());
-		estab.setPhone_number(establishment.getPhone_number());
-		estab.setNumber(establishment.getNumber());
-		estab.setStreet(establishment.getStreet());
-
-		Establishment updatedEstablishment = establishmentRepository.save(establishment);
-
-		return ResponseEntity.ok(updatedEstablishment);
+		return establishmentService.updateEstablishment(id, establishment);
 	}
 
 	// ------------ DELETE ESTABLISHMENT WITH RELATIONS
-	@DeleteMapping("/estabelecimentos/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Map<String, Boolean>> deleteEstablishment(@PathVariable Integer id) {
-		Establishment establishment = establishmentRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Estabelecimento não existe com o id" + id));
-
-		employeeEstabRepository.deleteByEstablishmentId(establishment.getId());
-		establishmentRepository.delete(establishment);
-
-		Map<String, Boolean> response = new HashMap<>();
-		response.put("Excluido", Boolean.TRUE);
-
-		return ResponseEntity.ok(response);
+		return establishmentService.deleteEstablishment(id);
 	}
 }

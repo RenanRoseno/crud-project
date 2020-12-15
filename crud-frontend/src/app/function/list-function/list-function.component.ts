@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { faPlus, faList, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 import Swal, { SweetAlertIcon } from 'sweetalert2';
-import { FunctionE } from 'src/app/function/function';
-import { FunctionService } from '../function.service';
-import { AlertsService } from 'src/app/alerts/alerts.service';
+import { FunctionE } from 'src/app/models/function';
+import { FunctionService } from '../../services/function.service';
+import { AlertsService } from 'src/app/services/alerts.service';
 
 @Component({
   selector: 'app-list-function',
@@ -14,7 +14,7 @@ import { AlertsService } from 'src/app/alerts/alerts.service';
 export class ListFunctionComponent implements OnInit {
   functionSea: string;
   functions: FunctionE[];
-  
+
   //----- ICONS 
   faPlus = faPlus;
   faList = faList;
@@ -32,9 +32,9 @@ export class ListFunctionComponent implements OnInit {
   //------- SEARCH FUNCTION
   search() {
     if (this.functionSea != "") {
-      this.functions = this.functions.filter(res => {
-        return res.function.toLocaleLowerCase().match(this.functionSea.toLocaleLowerCase())
-      })
+      this.functionService.searchFunctions(this.functionSea).subscribe(data => {
+        this.functions = data;
+      });
     } else if (this.functionSea == "") {
       this.ngOnInit();
     }

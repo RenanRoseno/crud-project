@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertsService } from 'src/app/alerts/alerts.service';
-import { FunctionE } from 'src/app/function/function';
-import { Employee } from '../employee';
-import { EmployeeService } from '../employee.service';
+import { AlertsService } from 'src/app/services/alerts.service';
+import { FunctionE } from 'src/app/models/function';
+import { Employee } from '../../models/employee';
+import { EmployeeService } from '../../services/employee.service';
 import { faPlus, faList, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FunctionService } from 'src/app/services/function.service';
+import { success, successMessage } from 'src/app/utils/constants';
 
 @Component({
   selector: 'app-create-employee',
@@ -15,7 +17,7 @@ export class CreateEmployeeComponent implements OnInit {
   functions : FunctionE[];
   
   employee: Employee = new Employee();
-
+  
   phoneMask = ['(', /[0-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/,/\d/,/\d/, '-', /\d/, /\d/, /\d/, /\d/];
   cepMask = [/[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/,/[0-9]/,/[0-9]/,];
   
@@ -25,7 +27,9 @@ export class CreateEmployeeComponent implements OnInit {
   faEdit = faEdit;
   faTrash = faTrash;
 
-  constructor(private employeeService : EmployeeService,
+  constructor(
+    private employeeService : EmployeeService,
+    private functionService : FunctionService,
     private router : Router,
     private alertService: AlertsService) { }
 
@@ -43,7 +47,7 @@ export class CreateEmployeeComponent implements OnInit {
   saveEmployee(){
     this.employeeService.createEmployee(this.employee).subscribe(data =>{
       console.log(data);
-      this.alertService.success("Cadastrado com Sucesso", "Sucesso");
+      this.alertService.success(successMessage, success);
     },
     error => {
       this.alertService.erro("Erro ao Cadastrar", "Erro");
@@ -56,7 +60,7 @@ export class CreateEmployeeComponent implements OnInit {
 
   // LIST FUNCTIONS
   private getFunctions(){
-    this.employeeService.getFunctions().subscribe(data=>{
+    this.functionService.getFunctions().subscribe(data=>{
       this.functions = data;
     })
   }

@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Employee } from '../employee';
-import { EmployeeService } from '../employee.service';
+import { Employee } from '../../models/employee';
+import { EmployeeService } from '../../services/employee.service';
 import { faPlus, faList, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 import Swal, { SweetAlertIcon } from 'sweetalert2';
-import { FunctionE } from 'src/app/function/function';
-import { EstablishmentService } from 'src/app/establishment/establishment.service';
-import { EmployeeEstablService } from 'src/app/employee_establ/employee-establ.service';
-import { EmployeeEstabl } from 'src/app/employee_establ/employee-establ';
-import { Establishment } from 'src/app/establishment/establishment';
+import { FunctionE } from 'src/app/models/function';
+import { EstablishmentService } from 'src/app/services/establishment.service';
+import { EmployeeEstablService } from 'src/app/services/employee-establ.service';
+import { EmployeeEstabl } from 'src/app/models/employee-establ';
+import { Establishment } from 'src/app/models/establishment';
+import { FunctionService } from 'src/app/services/function.service';
+import { askAlert, success, successMessage, errorT, errorMessage} from 'src/app/utils/constants';
+import { AlertsService } from 'src/app/services/alerts.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -32,6 +35,8 @@ export class EmployeeListComponent implements OnInit {
   constructor(private employeeService: EmployeeService,
     private establishmentService : EstablishmentService,
     private employeeEstabService : EmployeeEstablService,
+    private functionService : FunctionService,
+    private alertService: AlertsService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -45,8 +50,8 @@ export class EmployeeListComponent implements OnInit {
   // SEARCH FUNCTION
   search() {
     if (this.name != "") {
-      this.employees = this.employees.filter(res => {
-        return res.name.toLocaleLowerCase().match(this.name.toLocaleLowerCase())
+      this.employeeService.searchEmployeeList(this.name).subscribe(data =>{
+        this.employees = data;
       })
     } else if (this.name == "") {
       this.ngOnInit();
@@ -80,7 +85,7 @@ export class EmployeeListComponent implements OnInit {
   }
 
   private getFunctions(){
-    this.employeeService.getFunctions().subscribe(data=>{
+    this.functionService.getFunctions().subscribe(data=>{
       this.functions = data;
     })
   }
@@ -88,15 +93,19 @@ export class EmployeeListComponent implements OnInit {
   // DELETE EMPLOYEE
   deleteEmployee(id: number) {
     Swal.fire({
-      title: 'Deseja realmente excluir?',
+      title: askAlert,
       showDenyButton: true,
       confirmButtonText: `Sim`,
       denyButtonText: `Não`,
+
     }).then((result) => {
       if (result.isConfirmed) {
         this.employeeService.deleteEmployee(id).subscribe(data => {
           console.log(data);
+          this.alertService.success(successMessage, success);
           this.getEmployees();
+        }, error => {
+          this.alertService.erro(errorMessage, errorT);
         });
       } else if (result.isDenied) {
 

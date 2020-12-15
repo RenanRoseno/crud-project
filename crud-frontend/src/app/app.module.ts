@@ -19,7 +19,7 @@ import { DataTablesModule } from 'angular-datatables';
 import { CreateFunctionComponent } from './function/create-function/create-function.component';
 import { UpdateFunctionComponent } from './function/update-function/update-function.component';
 import { ListFunctionComponent } from './function/list-function/list-function.component';
-
+import { CommonModule } from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -45,7 +45,8 @@ import { ListFunctionComponent } from './function/list-function/list-function.co
     FontAwesomeModule,
     TextMaskModule,
     SweetAlert2Module,
-    DataTablesModule
+    DataTablesModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
