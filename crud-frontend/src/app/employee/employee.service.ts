@@ -16,28 +16,34 @@ export class EmployeeService {
 
 
   constructor(private httpClient: HttpClient) { }
-  
+
+  //------- LIST EMPLOYEES
   getEmployeesList(): Observable<Employee[]> {
     return this.httpClient.get<Employee[]>(`${this.baseUrl}`);
   }
 
+  //----- CREATE EMPLOYEES
   createEmployee(employee: Employee): Observable<Object> {
     return this.httpClient.post(`${this.baseUrlSave}`, employee);
   }
 
+  //------ VIEW EMPLOYEE BY ID
   getEmployeeById(id: number): Observable<Employee> {
     return this.httpClient.get<Employee>(`${this.baseUrl}/${id}`);
   }
 
+  //------ UPDATE EMPLOYEE
   updateEmployee(id: number, employee: Employee): Observable<Object> {
     return this.httpClient.put(`${this.baseUrl}/${id}`, employee);
   }
 
-  deleteEmployee(id:number): Observable<Object>{
+  //------- DELETE EMPLOYEE
+  deleteEmployee(id: number): Observable<Object> {
     return this.httpClient.delete(`${this.baseUrl}/${id}`);
   }
-  
-  getFunctions():Observable<FunctionE[]>{
+
+  //--------- LIST FUNCTIONS
+  getFunctions(): Observable<FunctionE[]> {
     return this.httpClient.get<FunctionE[]>(`${this.baseUrlFunctions}`);
   }
 

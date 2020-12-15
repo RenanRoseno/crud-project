@@ -18,6 +18,7 @@ import { Establishment } from 'src/app/establishment/establishment';
 export class EmployeeListComponent implements OnInit {
 
   name: string;
+  // ICONS
   faPlus = faPlus;
   faList = faList;
   faEdit = faEdit;
@@ -27,6 +28,7 @@ export class EmployeeListComponent implements OnInit {
   establishments : Establishment[];
   functions : FunctionE[];
   employees: Employee[];
+
   constructor(private employeeService: EmployeeService,
     private establishmentService : EstablishmentService,
     private employeeEstabService : EmployeeEstablService,
@@ -40,6 +42,7 @@ export class EmployeeListComponent implements OnInit {
     this.getEstablishment();
   }
 
+  // SEARCH FUNCTION
   search() {
     if (this.name != "") {
       this.employees = this.employees.filter(res => {
@@ -50,23 +53,28 @@ export class EmployeeListComponent implements OnInit {
     }
   }
   
+  // LIST RELATIONS
   private getRelations(){
     this.employeeEstabService.getEmployeeEstablList().subscribe(data => {
       this.relations = data;
     })
   }
 
+  // LIST ESTABLISHMENTS
   private getEstablishment() {
     this.establishmentService.getEstablishmentList().subscribe(data => {
       this.establishments = data;
     })
   }
 
+  // LIST EMPLOYEES
   private getEmployees() {
     this.employeeService.getEmployeesList().subscribe(data => {
       this.employees = data;
     });
   }
+
+  //  UPDATE EMPLOYEE VIEW
   updateEmployee(id: number) {
     this.router.navigate(["funcionarios/editar/", id])
   }
@@ -77,6 +85,7 @@ export class EmployeeListComponent implements OnInit {
     })
   }
 
+  // DELETE EMPLOYEE
   deleteEmployee(id: number) {
     Swal.fire({
       title: 'Deseja realmente excluir?',

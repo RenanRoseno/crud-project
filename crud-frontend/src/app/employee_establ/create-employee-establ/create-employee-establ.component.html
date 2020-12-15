@@ -1,6 +1,6 @@
 <div class="col-md-8 offset-md-2">
     <h3>Relacionar Profissional e Empresa</h3>
-    
+
     <form (ngSubmit)="onSubmit()">
 
         <div class="form-group required">
@@ -8,18 +8,21 @@
                 <div class="col">
                     <div class="form-group">
                         <label>Funcionário</label>
-                        <select class="form-control" name="id_employee" id="id_employee" [(ngModel)]="employeeEstabl.id_employee"
-                        [ngModelOptions]="{standalone: true}">
+                        <select class="form-control" name="id_employee" id="id_employee"
+                            [(ngModel)]="employeeEstabl.id_employee" [ngModelOptions]="{standalone: true}">
                             <option value="0" disabled>Selecione</option>
-                            <option *ngFor = "let employee of employees; let i = index" value="{{employee.id}}">{{employee.name}}</option>
+                            <option *ngFor="let employee of employees; let i = index" value="{{employee.id}}">
+                                {{employee.name}}</option>
                         </select>
                     </div>
                 </div>
                 <div class="col">
                     <label>Estabelecimento</label>
-                    <select class="form-control" name="id_establishment" id="id_establishment" [(ngModel)]="employeeEstabl.id_establishment" [ngModelOptions]="{standalone: true}">
+                    <select class="form-control" name="id_establishment" id="id_establishment"
+                        [(ngModel)]="employeeEstabl.id_establishment" [ngModelOptions]="{standalone: true}">
                         <option value="0" disabled>Selecione</option>
-                        <option *ngFor = "let establishment of establishments;" value="{{establishment.id}}">{{establishment.name}}</option>
+                        <option *ngFor="let establishment of establishments;" value="{{establishment.id}}">
+                            {{establishment.name}}</option>
                     </select>
                 </div>
             </div>

@@ -8,29 +8,34 @@ import { FunctionE } from './function';
 })
 export class FunctionService {
 
- 
+  // URL's
   private baseUrl = "http://localhost:8081/crud/funcoes";
   private baseUrlSave = "http://localhost:8081/crud/funcoes/salvar";
-  
-  constructor(private httpClient : HttpClient) { }
 
-  getFunctions():Observable<FunctionE[]>{
+  constructor(private httpClient: HttpClient) { }
+
+  //------ LIST FUNCTIONS
+  getFunctions(): Observable<FunctionE[]> {
     return this.httpClient.get<FunctionE[]>(`${this.baseUrl}`);
-  } 
+  }
 
-  createFunction(function1 : FunctionE) : Observable<Object>{
+  // ---------  CREATE FUNCTION
+  createFunction(function1: FunctionE): Observable<Object> {
     return this.httpClient.post(`${this.baseUrlSave}`, function1);
   };
 
+  // ---------- VIEW FUNCTION BY ID
   getFunctionById(id: number): Observable<FunctionE> {
     return this.httpClient.get<FunctionE>(`${this.baseUrl}/${id}`);
   }
 
-  updateFunction(id: number, function1 : FunctionE): Observable<Object>{
+  //----------- UPDATE FUNCTION
+  updateFunction(id: number, function1: FunctionE): Observable<Object> {
     return this.httpClient.put(`${this.baseUrl}/${id}`, function1);
   };
 
-  deleteFunction(id: number): Observable<Object>{
+  // ---------- DELETE FUNCTION
+  deleteFunction(id: number): Observable<Object> {
     return this.httpClient.delete(`${this.baseUrl}/${id}`);
   };
 

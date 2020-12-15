@@ -9,25 +9,30 @@ import { Establishment } from './establishment';
 export class EstablishmentService {
   private baseUrl = 'http://localhost:8081/crud/estabelecimentos'
   private baseUrlSave = 'http://localhost:8081/crud/estabelecimentos/salvar'
-  constructor(private httpClient : HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
-  getEstablishmentList() : Observable<Establishment[]>{
+  //----------- LIST ESTABLISHMENTS
+  getEstablishmentList(): Observable<Establishment[]> {
     return this.httpClient.get<Establishment[]>(`${this.baseUrl}`);
   }
 
-  createEstablishment(establishment:Establishment): Observable<Object>{
+  //----------- CREATE ESTABLISHMENTS
+  createEstablishment(establishment: Establishment): Observable<Object> {
     return this.httpClient.post(`${this.baseUrlSave}`, establishment);
   }
 
+  //---------- VIEW ESTABLISHMENTS BY ID
   getEstablishmentById(id: number): Observable<Establishment> {
     return this.httpClient.get<Establishment>(`${this.baseUrl}/${id}`);
   }
 
+  // ---------- UPDATE ESTABLISHMENT
   updateEstablishment(id: number, establishment: Establishment): Observable<Object> {
     return this.httpClient.put(`${this.baseUrl}/${id}`, establishment);
   }
 
-  deleteEmployee(id:number): Observable<Object>{
+  //---------- DELETE ESTABLISHMENT
+  deleteEmployee(id: number): Observable<Object> {
     return this.httpClient.delete(`${this.baseUrl}/${id}`);
   }
 }

@@ -10,32 +10,35 @@ import { FunctionService } from '../function.service';
   styleUrls: ['./update-function.component.css']
 })
 export class UpdateFunctionComponent implements OnInit {
-  id: number;
-  function1 : FunctionE = new FunctionE();
 
-  constructor(  
-    private functionService : FunctionService,
+  id: number;
+  function1: FunctionE = new FunctionE();
+
+  constructor(
+    private functionService: FunctionService,
     private route: ActivatedRoute,
     private router: Router,
-    private alertService : AlertsService) { }
+    private alertService: AlertsService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.functionService.getFunctionById(this.id).subscribe(data => {
       this.function1 = data;
-    }, error => console.log(error));
+    });
   }
 
-  goToFunctionList(){
+  //---- REDIRECT FUNCTION
+  goToFunctionList() {
     this.router.navigate(['/funcoes']);
   }
 
+  // ------- UPDATE FUNCTION
   onSubmit() {
     this.functionService.updateFunction(this.id, this.function1).subscribe(data => {
       this.alertService.success("Editado com Sucesso", "Sucesso");
       this.goToFunctionList();
 
-    }, error =>{
+    }, error => {
       this.alertService.erro("Erro ao editar", "Erro");
     });
   }

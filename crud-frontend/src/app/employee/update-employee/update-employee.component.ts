@@ -12,12 +12,15 @@ import { faPlus, faList, faEdit, faTrash } from '@fortawesome/free-solid-svg-ico
   styleUrls: ['./update-employee.component.css']
 })
 export class UpdateEmployeeComponent implements OnInit {
+  // MASKS
   employee: Employee = new Employee();
   phoneMask = ['(', /[0-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   cepMask = [/[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/, /[0-9]/,];
+  
   id: number;
   functions : FunctionE[];
-
+  
+  // ICONS
   faPlus = faPlus;
   faList = faList;
   faEdit = faEdit;
@@ -35,10 +38,11 @@ export class UpdateEmployeeComponent implements OnInit {
     }, error => console.log(error));
     this.getFunctions();
   }
+  // REDIRECT
   goToEmployeeList(){
     this.router.navigate(['/funcionarios']);
   }
-
+  //ACTION BUTTON
   onSubmit() {
     this.employeeService.updateEmployee(this.id, this.employee).subscribe(data => {
       this.alertService.success("Editado com Sucesso", "Sucesso");
@@ -48,6 +52,7 @@ export class UpdateEmployeeComponent implements OnInit {
       this.alertService.erro("Erro ao editar", "Erro");
     });
   }
+  // LIST FUNCTIONS
   private getFunctions(){
     this.employeeService.getFunctions().subscribe(data=>{
       this.functions = data;

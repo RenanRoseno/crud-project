@@ -1,4 +1,4 @@
 export class FunctionE {
     id: number;
-    function : string;
+    function: string;
 }

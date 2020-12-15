@@ -16,6 +16,7 @@ export class CreateEstablishmentComponent implements OnInit {
   phoneMask = ['(', /[0-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   cepMask = [/[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/, /[0-9]/,];
 
+  // ICONS
   faPlus = faPlus;
   faList = faList;
   faEdit = faEdit;
@@ -29,10 +30,12 @@ export class CreateEstablishmentComponent implements OnInit {
 
   }
 
+  //REDIRECT
   goToEstablishmentList() {
     this.router.navigate(['/estabelecimentos']);
   }
 
+  // CREATE ESTABLISHMENT
   saveEstablishment() {
     this.establishmentService.createEstablishment(this.establishment).subscribe(data => {
       console.log(data);
@@ -43,6 +46,7 @@ export class CreateEstablishmentComponent implements OnInit {
       });
   }
 
+  // BUTTON ACTION
   onSubmit() {
     this.saveEstablishment();
     console.log(this.establishment);

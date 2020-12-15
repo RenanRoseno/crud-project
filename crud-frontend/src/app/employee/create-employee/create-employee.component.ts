@@ -19,6 +19,7 @@ export class CreateEmployeeComponent implements OnInit {
   phoneMask = ['(', /[0-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/,/\d/,/\d/, '-', /\d/, /\d/, /\d/, /\d/];
   cepMask = [/[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/,/[0-9]/,/[0-9]/,];
   
+  // ICONS
   faPlus = faPlus;
   faList = faList;
   faEdit = faEdit;
@@ -32,10 +33,13 @@ export class CreateEmployeeComponent implements OnInit {
     this.getFunctions();
     this.employee.id_function = 0;
   }
-
+  
+  // REDIRECT
   goToEmployeeList(){
     this.router.navigate(['/funcionarios']);
   }
+
+  //CREATE EMPLOYEE
   saveEmployee(){
     this.employeeService.createEmployee(this.employee).subscribe(data =>{
       console.log(data);
@@ -50,6 +54,7 @@ export class CreateEmployeeComponent implements OnInit {
     console.log(this.employee);
   }
 
+  // LIST FUNCTIONS
   private getFunctions(){
     this.employeeService.getFunctions().subscribe(data=>{
       this.functions = data;

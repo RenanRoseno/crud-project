@@ -54,9 +54,11 @@
                 </div>
                 <div class="col">
                     <label>Função</label>
-                    <select id="function" class="form-control" name="function" [(ngModel)]="employee.id_function" [ngModelOptions]="{standalone: true}">
+                    <select id="function" class="form-control" name="function" [(ngModel)]="employee.id_function"
+                        [ngModelOptions]="{standalone: true}">
                         <option value="0">Selecione</option>
-                        <option *ngFor = "let function of functions" value="{{function.id}}"> {{function.function}}</option>
+                        <option *ngFor="let function of functions" value="{{function.id}}"> {{function.function}}
+                        </option>
                     </select>
                 </div>
             </div>

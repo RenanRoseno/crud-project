@@ -12,21 +12,24 @@ import { AlertsService } from 'src/app/alerts/alerts.service';
   styleUrls: ['./list-function.component.css']
 })
 export class ListFunctionComponent implements OnInit {
+  functionSea: string;
+  functions: FunctionE[];
+  
+  //----- ICONS 
   faPlus = faPlus;
   faList = faList;
   faEdit = faEdit;
   faTrash = faTrash;
-  functionSea: string;
-  functions : FunctionE[];
 
-  constructor( private functionService : FunctionService, 
-    private router : Router,
+  constructor(private functionService: FunctionService,
+    private router: Router,
     private alertService: AlertsService) { }
 
   ngOnInit(): void {
     this.getFunctions();
   }
 
+  //------- SEARCH FUNCTION
   search() {
     if (this.functionSea != "") {
       this.functions = this.functions.filter(res => {
@@ -37,16 +40,19 @@ export class ListFunctionComponent implements OnInit {
     }
   }
 
-  private getFunctions(){
-    this.functionService.getFunctions().subscribe( data => {
+  //------- LIST FUNCTION
+  private getFunctions() {
+    this.functionService.getFunctions().subscribe(data => {
       this.functions = data;
     })
   }
 
+  //-------- UPDATE PAGE FUNCTION
   updateFunction(id: number) {
     this.router.navigate(["funcoes/editar/", id])
   }
 
+  //-------- DELETE FUNCTION
   deleteFunction(id: number) {
     Swal.fire({
       title: 'Deseja realmente excluir?',

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Employee } from '../../employee/employee';
 import { Establishment } from '../../establishment/establishment';
 import { EmployeeEstabl } from '../employee-establ';
-import  Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 // ES6 Modules or TypeScript
 
 
@@ -22,9 +22,9 @@ export class CreateEmployeeEstablComponent implements OnInit {
   establishments: Establishment[];
   employeeEstabl: EmployeeEstabl = new EmployeeEstabl();
 
-  constructor(private employeeEstablService : EmployeeEstablService, 
+  constructor(private employeeEstablService: EmployeeEstablService,
     private router: Router,
-    private alertService : AlertsService) { }
+    private alertService: AlertsService) { }
 
   ngOnInit(): void {
     this.getEmployees();
@@ -32,34 +32,39 @@ export class CreateEmployeeEstablComponent implements OnInit {
     this.employeeEstabl.id_employee = 0;
     this.employeeEstabl.id_establishment = 0;
   }
+  //------- LIST EMPLOYEES
   private getEmployees() {
     this.employeeEstablService.getEmployeesList().subscribe(data => {
       this.employees = data;
     });
   }
-
+//---------- LIST ESTABLISHMENT
   private getEstablishment() {
     this.employeeEstablService.getEstablishmentList().subscribe(data => {
       this.establishments = data;
     })
   }
-  goToEmployeeList(){
-    this.router.navigate(['/funcionarios']);
-  }
-
-  saveEmployeeEstabl(){
-    this.employeeEstablService.createEmployeeEstablishment(this.employeeEstabl).subscribe(data =>{
+//---------- CREATE RELATION  
+  saveEmployeeEstabl() {
+    this.employeeEstablService.createEmployeeEstablishment(this.employeeEstabl).subscribe(data => {
       this.alertService.success('Cadastrado com Sucesso', "Sucesso");
       console.log(data);
     },
-    error => {
-      this.alertService.success('Erro ao Cadastrar', "Sucesso");
-      console.log(error);
-    });
+      error => {
+        this.alertService.success('Erro ao Cadastrar', "Sucesso");
+        console.log(error);
+      });
   }
-  onSubmit(){
+  
+  // REDIRECT
+  goToEmployeeList() {
+    this.router.navigate(['/funcionarios']);
+  }
+
+  //----- BUTTON ACTION
+  onSubmit() {
     console.log(this.employeeEstabl);
     this.saveEmployeeEstabl();
-    
+
   }
 }

@@ -15,18 +15,20 @@ export class EmployeeEstablService {
   private baseUrlComplete = "http://localhost:8081/crud/funcionarios/estabelecimentos";
   constructor(private httpClient: HttpClient) { }
 
-  createEmployeeEstablishment(employeeEstabl:EmployeeEstabl): Observable<Object>{
+  //---------- CREATE RELATION
+  createEmployeeEstablishment(employeeEstabl: EmployeeEstabl): Observable<Object> {
     return this.httpClient.post(`${this.baseUrlSave}`, employeeEstabl);
   }
-
-  getEmployeeEstablList():Observable<EmployeeEstabl[]>{
+  //---------- LIST RELATIONS
+  getEmployeeEstablList(): Observable<EmployeeEstabl[]> {
     return this.httpClient.get<EmployeeEstabl[]>(`${this.baseUrlComplete}`);
   }
+  //---------- LIST EMPLOYEES
   getEmployeesList(): Observable<Employee[]> {
     return this.httpClient.get<Employee[]>(`${this.baseUrl}`);
   }
-
-  getEstablishmentList() : Observable<Establishment[]>{
+  //---------- LIST ESTABLISHMENTS
+  getEstablishmentList(): Observable<Establishment[]> {
     return this.httpClient.get<Establishment[]>(`${this.baseUrlE}`);
   }
 

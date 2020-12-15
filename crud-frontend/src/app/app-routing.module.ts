@@ -12,20 +12,27 @@ import { ListFunctionComponent } from './function/list-function/list-function.co
 import { UpdateFunctionComponent } from './function/update-function/update-function.component';
 
 const routes: Routes = [
+
+  // CRUD FUNCIONÁRIOS ROUTES
   {path: 'funcionarios', component: EmployeeListComponent},
   {path: 'funcionarios/cadastrar', component: CreateEmployeeComponent},
   {path: 'funcionarios/editar/:id', component: UpdateEmployeeComponent},
   
+  // CRUD ESTABELECIMENTO ROUTES
   {path: 'estabelecimentos', component: EstablishmentListComponent},
   {path: 'estabelecimento/cadastrar', component: CreateEstablishmentComponent},
   {path: 'estabelecimentos/editar/:id', component: UpdateEstablishmentComponent},
   
-  {path: 'funcionarios-establ', component: CreateEmployeeEstablComponent},
-  {path: 'funcionarios-establ/cadastrar', component: CreateEmployeeEstablComponent},
-
+  
+  // CRUD FUNÇÕES ROUTES
   {path: 'funcoes', component:ListFunctionComponent},
   {path: 'funcoes/cadastrar', component:CreateFunctionComponent},
   {path: 'funcoes/editar/:id', component:UpdateFunctionComponent},
+
+  // CREATE RELATION ROUTES
+  {path: 'funcionarios-establ', component: CreateEmployeeEstablComponent},
+  {path: 'funcionarios-establ/cadastrar', component: CreateEmployeeEstablComponent},
+  
   
   {path: '', redirectTo: 'funcionarios', pathMatch:'full'}
 ];

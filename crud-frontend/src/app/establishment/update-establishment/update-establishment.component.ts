@@ -11,17 +11,19 @@ import { faPlus, faList, faEdit, faTrash } from '@fortawesome/free-solid-svg-ico
   styleUrls: ['./update-establishment.component.css']
 })
 export class UpdateEstablishmentComponent implements OnInit {
+  // MASKS
   phoneMask = ['(', /[0-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   cepMask = [/[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/, /[0-9]/,];
 
   id: number;
   establishment: Establishment = new Establishment();
-
+  
+  // ICONS
   faPlus = faPlus;
   faList = faList;
   faEdit = faEdit;
   faTrash = faTrash;
-  
+
   constructor(private establishmentService: EstablishmentService,
     private route: ActivatedRoute,
     private router: Router,
@@ -34,10 +36,12 @@ export class UpdateEstablishmentComponent implements OnInit {
     }, error => console.log(error));
   }
 
+  //REDIRECT
   goToEstablishmentList() {
     this.router.navigate(['/estabelecimentos']);
   }
 
+  // BUTTON ACTION
   onSubmit() {
     this.establishmentService.updateEstablishment(this.id, this.establishment).subscribe(data => {
       this.goToEstablishmentList();
