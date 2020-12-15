@@ -6,6 +6,7 @@ import { Employee } from '../../models/employee';
 import { EmployeeService } from '../../services/employee.service';
 import { faPlus, faList, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FunctionService } from 'src/app/services/function.service';
+import { errorMessage, errorT, success, successMessage } from 'src/app/utils/constants';
 
 @Component({
   selector: 'app-update-employee',
@@ -48,11 +49,11 @@ export class UpdateEmployeeComponent implements OnInit {
   //ACTION BUTTON
   onSubmit() {
     this.employeeService.updateEmployee(this.id, this.employee).subscribe(data => {
-      this.alertService.success("Editado com Sucesso", "Sucesso");
+      this.alertService.success(successMessage, success);
       this.goToEmployeeList();
 
     }, error =>{
-      this.alertService.erro("Erro ao editar", "Erro");
+      this.alertService.erro(errorMessage, errorT);
     });
   }
   // LIST FUNCTIONS

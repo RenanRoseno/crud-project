@@ -4,6 +4,7 @@ import { AlertsService } from 'src/app/services/alerts.service';
 import { Establishment } from 'src/app/models/establishment';
 import { EstablishmentService } from '../../services/establishment.service';
 import { faPlus, faList, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { errorMessage, errorT, success, successMessage } from 'src/app/utils/constants';
 
 @Component({
   selector: 'app-update-establishment',
@@ -45,9 +46,9 @@ export class UpdateEstablishmentComponent implements OnInit {
   onSubmit() {
     this.establishmentService.updateEstablishment(this.id, this.establishment).subscribe(data => {
       this.goToEstablishmentList();
-      this.alertService.success("Editado com Sucesso", "Sucesso");
+      this.alertService.success(successMessage, success);
     }, error => {
-      this.alertService.erro("Erro ao editar", "Erro");
+      this.alertService.erro(errorMessage, errorT);
     });
   }
 

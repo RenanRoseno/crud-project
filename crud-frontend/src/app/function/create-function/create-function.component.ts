@@ -3,6 +3,7 @@ import { AlertsService } from 'src/app/services/alerts.service';
 import { FunctionE } from '../../models/function';
 import { FunctionService } from '../../services/function.service';
 import { faPlus, faList, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { errorMessage, errorT, success, successMessage } from 'src/app/utils/constants';
 
 @Component({
   selector: 'app-create-function',
@@ -27,9 +28,9 @@ export class CreateFunctionComponent implements OnInit {
   //------ CREATE FUNCTION
   saveFunction(){
     this.functionService.createFunction(this.function1).subscribe( data => {
-      this.alertService.success("Cadastrado com Sucesso", "Sucesso");
+      this.alertService.success(successMessage, success);
     }, error => {
-      this.alertService.erro("Erro ao Cadastrar", "Erro");
+      this.alertService.erro(errorMessage, errorT);
     })
   }
 

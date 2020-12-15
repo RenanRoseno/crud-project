@@ -8,6 +8,7 @@ import { EmployeeEstablService } from '../../services/employee-establ.service';
 import { AlertsService } from 'src/app/services/alerts.service';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { EstablishmentService } from 'src/app/services/establishment.service';
+import { errorMessage, errorT, success, successMessage } from 'src/app/utils/constants';
 
 @Component({
   selector: 'app-create-employee-establ',
@@ -46,11 +47,11 @@ export class CreateEmployeeEstablComponent implements OnInit {
 //---------- CREATE RELATION  
   saveEmployeeEstabl() {
     this.employeeEstablService.createEmployeeEstablishment(this.employeeEstabl).subscribe(data => {
-      this.alertService.success('Cadastrado com Sucesso', "Sucesso");
+      this.alertService.success(successMessage, success);
       console.log(data);
     },
       error => {
-        this.alertService.success('Erro ao Cadastrar', "Sucesso");
+        this.alertService.erro(errorMessage, errorT);
         console.log(error);
       });
   }

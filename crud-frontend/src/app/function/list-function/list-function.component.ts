@@ -5,6 +5,7 @@ import Swal, { SweetAlertIcon } from 'sweetalert2';
 import { FunctionE } from 'src/app/models/function';
 import { FunctionService } from '../../services/function.service';
 import { AlertsService } from 'src/app/services/alerts.service';
+import { success, successMessage } from 'src/app/utils/constants';
 
 @Component({
   selector: 'app-list-function',
@@ -63,7 +64,7 @@ export class ListFunctionComponent implements OnInit {
       if (result.isConfirmed) {
         this.functionService.deleteFunction(id).subscribe(data => {
           console.log(data);
-          this.alertService.success("Excluido com sucesso", "Sucesso");
+          this.alertService.success(successMessage, success);
           this.getFunctions();
         }, erro => {
           this.alertService.erro("Existem funcionários atribuídos a essa função! Altere a função deles para excluir", "Erro");

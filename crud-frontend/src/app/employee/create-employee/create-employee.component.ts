@@ -6,7 +6,7 @@ import { Employee } from '../../models/employee';
 import { EmployeeService } from '../../services/employee.service';
 import { faPlus, faList, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FunctionService } from 'src/app/services/function.service';
-import { success, successMessage } from 'src/app/utils/constants';
+import { errorMessage, errorT, success, successMessage } from 'src/app/utils/constants';
 
 @Component({
   selector: 'app-create-employee',
@@ -50,7 +50,7 @@ export class CreateEmployeeComponent implements OnInit {
       this.alertService.success(successMessage, success);
     },
     error => {
-      this.alertService.erro("Erro ao Cadastrar", "Erro");
+      this.alertService.erro(errorMessage, errorT);
     });
   }
   onSubmit(){

@@ -4,6 +4,7 @@ import { AlertsService } from 'src/app/services/alerts.service';
 import { Establishment } from 'src/app/models/establishment';
 import { EstablishmentService } from '../../services/establishment.service';
 import { faPlus, faList, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { errorMessage, errorT, success, successMessage } from 'src/app/utils/constants';
 
 @Component({
   selector: 'app-create-establishment',
@@ -39,10 +40,10 @@ export class CreateEstablishmentComponent implements OnInit {
   saveEstablishment() {
     this.establishmentService.createEstablishment(this.establishment).subscribe(data => {
       console.log(data);
-      this.alertService.success("Sucesso ao cadastrar", "Sucesso");
+      this.alertService.success(successMessage, success);
     },
       error => {
-        this.alertService.erro("Erro ao Cadastrar", "Erro");
+        this.alertService.erro(errorMessage, errorT);
       });
   }
 

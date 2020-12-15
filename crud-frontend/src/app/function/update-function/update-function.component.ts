@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertsService } from 'src/app/services/alerts.service';
+import { errorMessage, errorT, success, successMessage } from 'src/app/utils/constants';
 import { FunctionE } from '../../models/function';
 import { FunctionService } from '../../services/function.service';
 
@@ -35,11 +36,11 @@ export class UpdateFunctionComponent implements OnInit {
   // ------- UPDATE FUNCTION
   onSubmit() {
     this.functionService.updateFunction(this.id, this.function1).subscribe(data => {
-      this.alertService.success("Editado com Sucesso", "Sucesso");
+      this.alertService.success(successMessage, success);
       this.goToFunctionList();
 
     }, error => {
-      this.alertService.erro("Erro ao editar", "Erro");
+      this.alertService.erro(errorMessage, errorT);
     });
   }
 }

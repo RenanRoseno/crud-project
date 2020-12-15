@@ -20,7 +20,7 @@ export const listFunction = 'funcoes';
 export const createFunction = 'funcoes/cadastrar';
 export const editFunction = 'funcoes/editar/:id';
 
-export const listEmployeeEstabl = 'funcionarios-establ'
+export const listEmployeeEstabl = 'funcionarios-establ';
 export const createEmployeeEstabl = 'funcionarios-establ/cadastrar';
 
 
