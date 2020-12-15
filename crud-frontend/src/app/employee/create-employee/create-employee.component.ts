@@ -4,6 +4,7 @@ import { AlertsService } from 'src/app/alerts/alerts.service';
 import { FunctionE } from 'src/app/function/function';
 import { Employee } from '../employee';
 import { EmployeeService } from '../employee.service';
+import { faPlus, faList, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-create-employee',
@@ -18,6 +19,10 @@ export class CreateEmployeeComponent implements OnInit {
   phoneMask = ['(', /[0-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/,/\d/,/\d/, '-', /\d/, /\d/, /\d/, /\d/];
   cepMask = [/[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/,/[0-9]/,/[0-9]/,];
   
+  faPlus = faPlus;
+  faList = faList;
+  faEdit = faEdit;
+  faTrash = faTrash;
 
   constructor(private employeeService : EmployeeService,
     private router : Router,

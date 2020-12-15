@@ -59,9 +59,9 @@ public class FunctionController {
 	public ResponseEntity<Map<String, Boolean>> deleteFunction(@PathVariable Integer id) {
 		Function function = functionRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Funcionário não existe com o id" + id));
-
+		
 		functionRepository.delete(function);
-
+		
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("Excluido", Boolean.TRUE);
 

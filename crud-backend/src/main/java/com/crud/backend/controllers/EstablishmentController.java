@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.crud.backend.exceptions.ResourceNotFoundException;
 import com.crud.backend.models.Establishment;
+import com.crud.backend.repositories.Employee_EstablRepository;
 import com.crud.backend.repositories.EstablishmentRepository;
 
 @RestController
@@ -25,6 +26,9 @@ import com.crud.backend.repositories.EstablishmentRepository;
 public class EstablishmentController {
 	@Autowired
 	private EstablishmentRepository establishmentRepository;
+	
+	@Autowired
+	private Employee_EstablRepository employeeEstabRepository;
 	
 	@GetMapping("/estabelecimentos")
 	public List<Establishment> getAllEmployeesEstab(){
@@ -65,7 +69,8 @@ public class EstablishmentController {
 	public ResponseEntity<Map<String, Boolean>> deleteEstablishment(@PathVariable Integer id) {
 		Establishment establishment = establishmentRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Estabelecimento não existe com o id" + id));
-
+		
+		employeeEstabRepository.deleteByEstablishmentId(establishment.getId());
 		establishmentRepository.delete(establishment);
 
 		Map<String, Boolean> response = new HashMap<>();

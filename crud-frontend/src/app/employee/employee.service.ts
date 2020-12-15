@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { EmployeeEstabl } from '../employee_establ/employee-establ';
+import { Establishment } from '../establishment/establishment';
 import { FunctionE } from '../function/function';
 import { Employee } from './employee';
 
@@ -38,4 +40,5 @@ export class EmployeeService {
   getFunctions():Observable<FunctionE[]>{
     return this.httpClient.get<FunctionE[]>(`${this.baseUrlFunctions}`);
   }
+
 }

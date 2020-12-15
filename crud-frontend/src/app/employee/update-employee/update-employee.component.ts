@@ -4,6 +4,7 @@ import { AlertsService } from 'src/app/alerts/alerts.service';
 import { FunctionE } from 'src/app/function/function';
 import { Employee } from '../employee';
 import { EmployeeService } from '../employee.service';
+import { faPlus, faList, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-update-employee',
@@ -16,6 +17,11 @@ export class UpdateEmployeeComponent implements OnInit {
   cepMask = [/[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/, /[0-9]/,];
   id: number;
   functions : FunctionE[];
+
+  faPlus = faPlus;
+  faList = faList;
+  faEdit = faEdit;
+  faTrash = faTrash;
 
   constructor(private employeeService: EmployeeService,
     private route: ActivatedRoute,

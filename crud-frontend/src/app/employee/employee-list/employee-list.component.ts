@@ -5,6 +5,10 @@ import { faPlus, faList, faEdit, faTrash } from '@fortawesome/free-solid-svg-ico
 import { Router } from '@angular/router';
 import Swal, { SweetAlertIcon } from 'sweetalert2';
 import { FunctionE } from 'src/app/function/function';
+import { EstablishmentService } from 'src/app/establishment/establishment.service';
+import { EmployeeEstablService } from 'src/app/employee_establ/employee-establ.service';
+import { EmployeeEstabl } from 'src/app/employee_establ/employee-establ';
+import { Establishment } from 'src/app/establishment/establishment';
 
 @Component({
   selector: 'app-employee-list',
@@ -19,15 +23,21 @@ export class EmployeeListComponent implements OnInit {
   faEdit = faEdit;
   faTrash = faTrash;
 
+  relations : EmployeeEstabl[];
+  establishments : Establishment[];
   functions : FunctionE[];
   employees: Employee[];
   constructor(private employeeService: EmployeeService,
+    private establishmentService : EstablishmentService,
+    private employeeEstabService : EmployeeEstablService,
     private router: Router) { }
 
   ngOnInit(): void {
 
     this.getEmployees();
     this.getFunctions();
+    this.getRelations();
+    this.getEstablishment();
   }
 
   search() {
@@ -40,6 +50,18 @@ export class EmployeeListComponent implements OnInit {
     }
   }
   
+  private getRelations(){
+    this.employeeEstabService.getEmployeeEstablList().subscribe(data => {
+      this.relations = data;
+    })
+  }
+
+  private getEstablishment() {
+    this.establishmentService.getEstablishmentList().subscribe(data => {
+      this.establishments = data;
+    })
+  }
+
   private getEmployees() {
     this.employeeService.getEmployeesList().subscribe(data => {
       this.employees = data;

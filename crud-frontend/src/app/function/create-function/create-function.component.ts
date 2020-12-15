@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertsService } from 'src/app/alerts/alerts.service';
 import { FunctionE } from '../function';
 import { FunctionService } from '../function.service';
+import { faPlus, faList, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-create-function',
@@ -11,6 +12,11 @@ import { FunctionService } from '../function.service';
 export class CreateFunctionComponent implements OnInit {
   function1 : FunctionE = new FunctionE;
 
+  faPlus = faPlus;
+  faList = faList;
+  faEdit = faEdit;
+  faTrash = faTrash;
+  
   constructor(private alertService: AlertsService,
     private functionService : FunctionService) { }
 

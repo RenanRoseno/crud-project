@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AlertsService } from 'src/app/alerts/alerts.service';
 import { Establishment } from '../establishment';
 import { EstablishmentService } from '../establishment.service';
+import { faPlus, faList, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-create-establishment',
@@ -15,6 +16,11 @@ export class CreateEstablishmentComponent implements OnInit {
   phoneMask = ['(', /[0-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   cepMask = [/[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/, /[0-9]/,];
 
+  faPlus = faPlus;
+  faList = faList;
+  faEdit = faEdit;
+  faTrash = faTrash;
+  
   constructor(private establishmentService: EstablishmentService,
     private router: Router,
     private alertService: AlertsService) { }

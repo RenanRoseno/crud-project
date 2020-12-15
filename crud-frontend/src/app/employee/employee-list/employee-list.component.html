@@ -21,6 +21,8 @@
         <th>Telefone</th>
         <th>Telefone Residencial</th>
         <th>Função</th>
+        <th>Estabelecimentos</th>
+        
         <th colspan="2" class="text-center">Ações</th>
     </thead>
     <tbody>
@@ -44,7 +46,13 @@
                     {{function.function}}
                 </td>
             </span>
-
+            <td>
+            <span *ngFor = "let relation of relations">
+                <span *ngFor = "let establishment of establishments">
+                    <span *ngIf = "employee.id == relation.id_employee && establishment.id == relation.id_establishment">{{establishment.name}} | </span>
+                </span>
+            </span>
+        </td>
             <td><button (click)="updateEmployee(employee.id)" class="btn btn-success" title="Editar">
                     <fa-icon [icon]="faEdit"></fa-icon>
                 </button></td>

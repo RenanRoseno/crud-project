@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { data } from 'jquery';
 import { AlertsService } from 'src/app/alerts/alerts.service';
 import { Establishment } from '../establishment';
 import { EstablishmentService } from '../establishment.service';
+import { faPlus, faList, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-update-establishment',
@@ -17,6 +17,11 @@ export class UpdateEstablishmentComponent implements OnInit {
   id: number;
   establishment: Establishment = new Establishment();
 
+  faPlus = faPlus;
+  faList = faList;
+  faEdit = faEdit;
+  faTrash = faTrash;
+  
   constructor(private establishmentService: EstablishmentService,
     private route: ActivatedRoute,
     private router: Router,

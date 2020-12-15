@@ -12,12 +12,16 @@ export class EmployeeEstablService {
   private baseUrl = "http://localhost:8081/crud/funcionarios";
   private baseUrlSave = "http://localhost:8081/crud/funcionarios/estabelecimentos/salvar";
   private baseUrlE = 'http://localhost:8081/crud/estabelecimentos'
+  private baseUrlComplete = "http://localhost:8081/crud/funcionarios/estabelecimentos";
   constructor(private httpClient: HttpClient) { }
 
   createEmployeeEstablishment(employeeEstabl:EmployeeEstabl): Observable<Object>{
     return this.httpClient.post(`${this.baseUrlSave}`, employeeEstabl);
   }
 
+  getEmployeeEstablList():Observable<EmployeeEstabl[]>{
+    return this.httpClient.get<EmployeeEstabl[]>(`${this.baseUrlComplete}`);
+  }
   getEmployeesList(): Observable<Employee[]> {
     return this.httpClient.get<Employee[]>(`${this.baseUrl}`);
   }
