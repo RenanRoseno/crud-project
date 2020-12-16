@@ -1,6 +1,11 @@
 # CRUD project
-It's a basic CRUD project of employees and establishments
-#### Technologies:
+Um sistema que consiste em:
+- Realizar CRUD de funcionários;
+- Realizar CRUD estabelecimentos;
+- Realizar CRUD de funções;
+- Cadastro de eelacionamento entre funcionário e estabelecimento;
+
+#### Technologias usadas:
 - Angular 11;
 - Spring Boot;
 - PostgreSQL.
@@ -53,7 +58,7 @@ It's a basic CRUD project of employees and establishments
 ### Listagem de Funções
 ![](images/Funções/1.jpeg)
 
-### Cadastro de Funções
+### CRUD de Funções
 ![](images/Funções/3.jpeg)
 
 ### Edição de Funções
