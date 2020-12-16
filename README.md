@@ -51,25 +51,25 @@ It's a basic CRUD project of employees and establishments
 
 # CRUD de Funções
 ### Listagem de Funções
-![](images/Funcoes/1.jpeg)
+![](images/Funções/1.jpeg)
 
 ### Cadastro de Funções
-![](images/Funcoes/3.jpeg)
+![](images/Funções/3.jpeg)
 
 ### Edição de Funções
-![](images/Funcoes/4.jpeg)
+![](images/Funções/4.jpeg)
 
 ### Pesquisa de Funções
-![](images/Funcoess/2.jpeg)
+![](images/Funções/2.jpeg)
 
 ### Mensagem de erro (Em cadastrar, editar e excluir Funções)
-![](images/Funcoes/5.jpeg)
+![](images/Funções/5.jpeg)
 
 ### Mensagem de sucesso (Em cadastrar, editar e excluir Funções)
-![](images/Funcoes/6.jpeg)
+![](images/Funções/6.jpeg)
 
 ### Confirmação para excluir
-![](images/Funcoes/7.jpeg)
+![](images/Funções/7.jpeg)
 
 # Cadastro de Relações
 ### Cadastro de Relações
