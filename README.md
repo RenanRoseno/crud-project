@@ -1,9 +1,9 @@
 # CRUD project
 Um sistema que consiste em:
-- Realizar CRUD de funcionários;
+- Realizar CRUD de profissionais;
 - Realizar CRUD estabelecimentos;
 - Realizar CRUD de funções;
-- Cadastro de relacionamento entre funcionário e estabelecimento;
+- Cadastro de relacionamento entre profissional e estabelecimento;
 
 #### Technologias usadas:
 - Angular 11;
