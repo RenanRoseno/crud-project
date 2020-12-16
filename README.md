@@ -3,7 +3,7 @@ Um sistema que consiste em:
 - Realizar CRUD de funcionários;
 - Realizar CRUD estabelecimentos;
 - Realizar CRUD de funções;
-- Cadastro de eelacionamento entre funcionário e estabelecimento;
+- Cadastro de relacionamento entre funcionário e estabelecimento;
 
 #### Technologias usadas:
 - Angular 11;
